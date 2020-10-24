@@ -1,7 +1,6 @@
 import { useState } from "react";
-import "./App.css";
 import dataset from "./dataset.json";
-const sampleData = dataset.slice(0, 5);
+import "./App.css";
 
 /**
  * Pick some cards from the deck
@@ -24,7 +23,7 @@ function App() {
       <h1>react bafo</h1>
       <p>calma que hoje à noite a coisa se torna um pouco mais visual</p>
 
-      <p>algum jeito de representar cartas [todo: import csv]</p>
+      <p>temos o dataset importado</p>
 
       <button onClick={() => setCards(pickCards(dataset))}>
         se clicar aqui, algumas [tipo, três] vão pra essa lista aqui
