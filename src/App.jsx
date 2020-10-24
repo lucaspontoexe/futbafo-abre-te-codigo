@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dataset from "./dataset.json";
 import "./App.css";
+import hand from './images/hand.png';
 
 /**
  * Pick some cards from the deck
@@ -16,28 +17,33 @@ function pickCards(deck, quantity = 3) {
 }
 
 function App() {
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState(JSON.parse(localStorage.getItem('cards')) || []);
+
+  useEffect(() => {
+    localStorage.setItem('cards', JSON.stringify(cards))
+  }, [cards])
 
   return (
     <div className="App">
-      <h1>react bafo</h1>
-      <p>calma que hoje à noite a coisa se torna um pouco mais visual</p>
+      
+      <div className="wrapper">
 
-      <p>temos o dataset importado</p>
+        <img src={hand} alt="Mão"/>
+      </div>
 
-      <button onClick={() => setCards(pickCards(dataset))}>
+      <button onClick={() => setCards([...cards, ...pickCards(dataset)])}>
         se clicar aqui, algumas [tipo, três] vão pra essa lista aqui
       </button>
 
-      <h2>sample:</h2>
-      <pre>{JSON.stringify(dataset[0], null, 4)}</pre>
 
       <h2>cartas escolhidas:</h2>
       <ul>
         {cards.map((card) => (
-          <li>{card.nome}: {card.titulo}</li>
+          <li key={card.nome}>{card.nome}: {card.titulo}</li>
         ))}
       </ul>
+
+
     </div>
   );
 }
