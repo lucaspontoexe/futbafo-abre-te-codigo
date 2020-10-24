@@ -35,7 +35,7 @@ function App() {
       <h2>cartas escolhidas:</h2>
       <ul>
         {cards.map((card) => (
-          <li>{card.nome}</li>
+          <li>{card.nome}: {card.titulo}</li>
         ))}
       </ul>
     </div>
