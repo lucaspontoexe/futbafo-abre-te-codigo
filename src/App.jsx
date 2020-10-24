@@ -15,6 +15,8 @@ function App() {
   }, [cards]);
 
   return (
+    // todo: outras rotas
+    // tipo a de escolher cartas pra apostar
     <div className="App">
       <div className="wrapper">
         <div className="cards-holder">
