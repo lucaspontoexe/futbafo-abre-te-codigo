@@ -3,10 +3,14 @@ section#voce-sabia {
   padding: 0px 10%;
   box-sizing: border-box;
   text-align: center;
+  background-color: #60358f;
+  color: white;
+  padding-top: 35px;
+  padding-bottom: 35px;
 
-  img {
+
+  img.logo-donas {
     max-width: 240px;
-    padding-top: 35px;
   }
 
   h1 {
@@ -27,11 +31,19 @@ section#voce-sabia {
     font-size: 20px;
     line-height: 23px;
   }
-  
+
+  .source {
+    font-size: 12px;
+  }
 
   .hashtags {
     font-family: Roboto;
     font-weight: 300;
+  }
+
+  .logo-redes-sociais img {
+    max-width: 240px;
+    cursor: pointer;
   }
 
   .bottom-text {
@@ -44,6 +56,9 @@ section#voce-sabia {
     margin-top: 20px;
   }
 
-  background-color: #60358f;
-  color: white;
+  .logo-museu-futebol {
+    padding: 0px;
+    height: 50px;
+    img {height: 100%;}
+  }
 }
