@@ -22,6 +22,7 @@ export default function Album(params) {
       <Header />
 
       <section id="album">
+        {/* array de pages; podem ser componentes mesmo, com alguns você sabia no meio */}
         <AlbumPage />
       </section>
     </>
