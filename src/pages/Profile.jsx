@@ -1,10 +1,10 @@
 import CardList from 'components/CardList';
-import Header from 'components/Header';
+import NavBar from 'components/NavBar';
 
 export default function Profile(params) {
     return (
         <>
-        <Header/>
+        <NavBar/>
         <section>
             <h1>Perfil</h1>
             <p>Jogador, você tem 16 figurinhas</p>

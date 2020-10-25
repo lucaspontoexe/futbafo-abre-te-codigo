@@ -1,4 +1,4 @@
-import Header from "components/Header";
+import NavBar from "components/NavBar";
 import placeholder from "images/rectangle9.svg";
 
 function AlbumPage(params) {
@@ -19,7 +19,7 @@ function AlbumPage(params) {
 export default function Album(params) {
   return (
     <>
-      <Header />
+      <NavBar />
 
       <section id="album">
         {/* array de pages; podem ser componentes mesmo, com alguns você sabia no meio */}

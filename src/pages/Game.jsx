@@ -1,4 +1,4 @@
-import Header from "components/Header";
+import NavBar from "components/NavBar";
 
 function CardsDisplay(params) {
   // usado pra mostrar as cartas que ganhou
@@ -18,7 +18,7 @@ export default function Game(params) {
   return (
     <>
       {/* TODO: navbar em vez de header? */}
-      <Header />
+      <NavBar />
 
       <h1>Comece a jogar!</h1>
       <p>Bata no monte e tente virar as figurinhas</p>
