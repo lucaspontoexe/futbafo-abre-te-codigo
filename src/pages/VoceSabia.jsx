@@ -1,4 +1,5 @@
 export default function VocêSabia(params) {
+  // tá com cara de componente isso
   return (
     <section>
       [logo]
