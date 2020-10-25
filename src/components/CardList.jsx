@@ -13,9 +13,7 @@ export default function CardList(params) {
 
       <div className="card-wrapper selected">
         <img src={sampleCard} alt="Carta" />
-        <div className="check">
-          <img src={check} alt=""/>
-        </div>
+        <div className="check"><img src={check} alt=""/></div>
       </div>
 
       <div className="card-wrapper">
@@ -23,8 +21,9 @@ export default function CardList(params) {
       </div>
 
 
-      <div className="card-wrapper">
+      <div className="card-wrapper selected">
         <img src={sampleCard} alt="Carta" />
+        <div className="check"><img src={check} alt=""/></div>
       </div>
 
 

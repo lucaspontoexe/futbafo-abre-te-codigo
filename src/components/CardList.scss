@@ -1,4 +1,4 @@
-$checkSize: 40px;
+$checkSize: 30px;
 
 .card-list {
     width: 90%;
@@ -27,7 +27,7 @@ $checkSize: 40px;
     height: $checkSize;
     right: $checkSize / -2;
     bottom: $checkSize / -2;
-    z-index: 1;
+    z-index: 2;
 
     img {
         width: 100%;
