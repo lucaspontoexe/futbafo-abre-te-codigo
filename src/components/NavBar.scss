@@ -1,0 +1,29 @@
+nav.main-nav {
+    ul {
+        display: flex;
+        flex-direction: row;
+        background: #F4F9E7;
+        list-style-type: none;
+        margin: 0;
+        padding: 0px;
+    }
+
+    li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        padding: 4px 0px;
+        img {
+            height: 30px;
+        }
+
+        span {
+            font-size: 0.8em;
+        }
+
+        &.active {
+            background: #A3C54B;
+        }
+    }
+}
