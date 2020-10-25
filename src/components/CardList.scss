@@ -8,8 +8,11 @@ $checkSize: 40px;
     flex-wrap: wrap;
     gap: 10px;
 
+    box-sizing: border-box;
+
     .card-wrapper {
         position: relative;
+
 
         &.selected {
             border: 2px solid green;
