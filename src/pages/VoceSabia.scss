@@ -1,0 +1,49 @@
+section#voce-sabia {
+  width: 100%;
+  padding: 0px 10%;
+  box-sizing: border-box;
+  text-align: center;
+
+  img {
+    max-width: 240px;
+    padding-top: 35px;
+  }
+
+  h1 {
+    font-family: MuseoModerno;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 57px;
+
+    margin-top: 0px;
+    margin-bottom: 0.4em;
+  }
+
+  p {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 23px;
+  }
+  
+
+  .hashtags {
+    font-family: Roboto;
+    font-weight: 300;
+  }
+
+  .bottom-text {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+
+    margin-top: 20px;
+  }
+
+  background-color: #60358f;
+  color: white;
+}
