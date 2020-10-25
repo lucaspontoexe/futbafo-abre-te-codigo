@@ -1,4 +1,13 @@
 nav.main-nav {
+    a {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        text-decoration: inherit;
+        color: inherit;
+    }
+
     ul {
         display: flex;
         flex-direction: row;
@@ -17,6 +26,7 @@ nav.main-nav {
         
         img {
             height: 30px;
+            object-fit: contain;
         }
 
         span {
