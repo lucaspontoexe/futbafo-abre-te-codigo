@@ -1,17 +1,12 @@
 import NavBar from "components/NavBar";
 import placeholder from "images/rectangle9.svg";
+import demo from "images/group26.png";
+import "./Album.scss";  
 
 function AlbumPage(params) {
   return (
     <div className="album-page">
-      <header>
-        <img src="" alt="futebafo section logo" />
-        <h1>As donas da Bola</h1>
-        {/* a seleção, etc. */}
-      </header>
-      <div className="figurinhas">
-        <img src={placeholder} alt="figurinha (título do dataset)" />
-      </div>
+      <img src={demo} alt="Demonstração"/>
     </div>
   );
 }

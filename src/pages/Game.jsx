@@ -4,25 +4,24 @@ import bluecard from "images/cards/blue.png";
 import yellowcard from "images/cards/yellow.png";
 import greencard from "images/cards/green.png";
 import redcard from "images/cards/red.png";
-import foto from 'images/48julianacabral.jpg';
-
+import foto from "images/48julianacabral.jpg";
+import mockup from "images/group25.png";
 
 function CardsDisplay(params) {
   // usado pra mostrar as cartas que ganhou
 
-  <div className="cards-display">
-    <div className="img-wrapper">
-      <img src="" alt="" />
+  return (
+    <div className="cards-display">
+      <div className="img-wrapper" style={{ width: "100vw", backgroundColor: '#60358F' }}>
+        <img src={mockup} alt="Acontece." style={{ width: "100%" }} />
+      </div>
 
-      <p>Jogadora Marta com a Medalha de Prata em Atenas</p>
+      {/* botões prev/next */}
     </div>
-
-    {/* botões prev/next */}
-  </div>;
+  );
 }
 
 const maxDistance = 90;
-
 const prettymocked = [0, 1, 2, 3];
 
 /**
@@ -47,16 +46,19 @@ export default function Game(params) {
   //ia ser interessante mudar esse nome hein
   const [flipcard, setflip] = useState(false);
   const [revealingCards, setRevealingCards] = useState(false);
+  const [displayingCard, setDisplaying] = useState(false);
 
   return (
     <>
       <NavBar />
+      {displayingCard && <CardsDisplay />}
+      {!displayingCard && (
+        <div className="game-wrapper">
+          <h1>Comece a jogar!</h1>
+          <p>Bata no monte e tente virar as figurinhas</p>
 
-      <h1>Comece a jogar!</h1>
-      <p>Bata no monte e tente virar as figurinhas</p>
-
-      <div className="game">
-        {/* 
+          <div className="game">
+            {/* 
 
         deck will have some [how many user has chosen] random cards from cpu [dataset] +
         user-chosen ones
@@ -74,25 +76,31 @@ export default function Game(params) {
 
         */}
 
-        {test.map((item, index) => (
-          <div
-            key={index}
-            className="card"
-            style={processCardStyle(flipcard, revealingCards && item.willFlip)}
-            onClick={() => revealingCards && item.willFlip && alert('flop')}
-          ></div>
-        ))}
-      </div>
-
-      <button
-        onClick={() => {
-          navigator.vibrate(50);
-          setflip(true);
-          setRevealingCards(true);
-        }}
-      >
-        ala
-      </button>
+            {test.map((item, index) => (
+              <div
+                key={index}
+                className="card"
+                style={processCardStyle(
+                  flipcard,
+                  revealingCards && item.willFlip
+                )}
+                onClick={() =>
+                  revealingCards && item.willFlip && setDisplaying(true)
+                }
+              ></div>
+            ))}
+          </div>
+          <button
+            onClick={() => {
+              navigator.vibrate(50);
+              setflip(true);
+              setRevealingCards(true);
+            }}
+          >
+            Jogar
+          </button>
+        </div>
+      )}
     </>
   );
 }
