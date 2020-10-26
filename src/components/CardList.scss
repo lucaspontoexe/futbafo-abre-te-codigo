@@ -12,7 +12,13 @@ $checkSize: 30px;
 
     .card-wrapper {
         position: relative;
+        // flex: 1;
 
+        width: 150px;
+        height: 120px;
+        background: url('../images/48julianacabral.jpg');
+        background-position: center;
+        background-size: cover;
 
         &.selected {
             border: 2px solid green;

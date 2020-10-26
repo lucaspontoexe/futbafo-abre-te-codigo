@@ -4,6 +4,8 @@ import bluecard from "images/cards/blue.png";
 import yellowcard from "images/cards/yellow.png";
 import greencard from "images/cards/green.png";
 import redcard from "images/cards/red.png";
+import foto from 'images/48julianacabral.jpg';
+
 
 function CardsDisplay(params) {
   // usado pra mostrar as cartas que ganhou
@@ -72,16 +74,19 @@ export default function Game(params) {
 
         */}
 
-        {test.map((item) => (
+        {test.map((item, index) => (
           <div
+            key={index}
             className="card"
             style={processCardStyle(flipcard, revealingCards && item.willFlip)}
+            onClick={() => revealingCards && item.willFlip && alert('flop')}
           ></div>
         ))}
       </div>
 
       <button
         onClick={() => {
+          navigator.vibrate(50);
           setflip(true);
           setRevealingCards(true);
         }}
@@ -108,9 +113,9 @@ function processCardStyle(flipped, revealed) {
     top: window.innerHeight / 2 - 120 / 2 + (Math.random() - 0.5) * 20,
     width: 130,
     height: 120,
-    backgroundImage: revealed ? `url(${yellowcard})` : `url(${bluecard})`,
+    backgroundImage: revealed ? `url(${foto})` : `url(${bluecard})`,
     backgroundPosition: "center",
-    backgroundSize: "contain",
+    backgroundSize: "cover",
     borderRadius: 5,
     // border: "1px solid black",
     transition: "all 1s cubic-bezier(.15,.84,.84,1)", // suggestion radians

@@ -12,7 +12,7 @@ export default function Profile(params) {
           <p>Jogador,</p>
           <p>
             <strong>Você tem </strong>
-            <span>16</span>{' '}
+            <span>4</span>{' '}
             <strong>figurinhas</strong>
           </p>
         </header>
