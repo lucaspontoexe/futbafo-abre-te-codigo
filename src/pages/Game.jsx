@@ -6,6 +6,7 @@ import greencard from "images/cards/green.png";
 import redcard from "images/cards/red.png";
 import foto from "images/48julianacabral.jpg";
 import mockup from "images/group25.png";
+import "./Game.scss"
 
 function CardsDisplay(params) {
   // usado pra mostrar as cartas que ganhou
