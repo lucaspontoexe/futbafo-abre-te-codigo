@@ -1,6 +1,9 @@
 import NavBar from "components/NavBar";
 import { useState } from "react";
-import bluecard from 'images/cards/blue.png';
+import bluecard from "images/cards/blue.png";
+import yellowcard from "images/cards/yellow.png";
+import greencard from "images/cards/green.png";
+import redcard from "images/cards/red.png";
 
 function CardsDisplay(params) {
   // usado pra mostrar as cartas que ganhou
@@ -16,14 +19,33 @@ function CardsDisplay(params) {
   </div>;
 }
 
-const cardWidth = 60;
 const maxDistance = 90;
+
+const prettymocked = [0, 1, 2, 3];
+
+/**
+ * Returns random properties based on array length.
+ * e.g if card will reveal and (color?)
+ * @param {array} array
+ */
+
+function randomStuffFromArray(array) {
+  array.map((_item) => ({
+    willFlip: Math.random() > 0.5,
+    texture: greencard,
+  }));
+}
+
+const test = prettymocked.map((_item) => ({
+  willFlip: Math.random() > 0.5,
+  texture: greencard,
+}));
 
 export default function Game(params) {
   //ia ser interessante mudar esse nome hein
-  const [flipcard, setflip] =  useState(false);
-  const [revealed, setRevealed] = useState(false);
-  
+  const [flipcard, setflip] = useState(false);
+  const [revealingCards, setRevealingCards] = useState(false);
+
   return (
     <>
       <NavBar />
@@ -50,23 +72,33 @@ export default function Game(params) {
 
         */}
 
-        <div className="card" style={processCardStyle(flipcard)} style={{}}></div>
-        <div className="card" style={processCardStyle(flipcard)}></div>
-        <div className="card" style={processCardStyle(flipcard)}></div>
-        <div className="card" style={processCardStyle(flipcard)}></div>
+        {test.map((item) => (
+          <div
+            className="card"
+            style={processCardStyle(flipcard, revealingCards && item.willFlip)}
+          ></div>
+        ))}
       </div>
 
-      <button onClick={() => setflip(true)}>ala</button>
+      <button
+        onClick={() => {
+          setflip(true);
+          setRevealingCards(true);
+        }}
+      >
+        ala
+      </button>
     </>
   );
 }
 
 /**
  * get card style for flipping
- * @param {boolean} flipped 
+ * @param {boolean} flipped
+ * @param {boolean} revealed
  * @returns {import("react").CSSProperties}
  */
-function processCardStyle(flipped) {
+function processCardStyle(flipped, revealed) {
   const randomposition = () => (Math.random() - 0.5) * maxDistance * 2;
   const randomrotation = () => (Math.random() - 0.5) * 360;
 
@@ -76,12 +108,14 @@ function processCardStyle(flipped) {
     top: window.innerHeight / 2 - 120 / 2 + (Math.random() - 0.5) * 20,
     width: 130,
     height: 120,
-    backgroundImage: `url(${bluecard})`,
-    backgroundPosition: 'center',
-    backgroundSize: 'contain',
+    backgroundImage: revealed ? `url(${yellowcard})` : `url(${bluecard})`,
+    backgroundPosition: "center",
+    backgroundSize: "contain",
     borderRadius: 5,
     // border: "1px solid black",
-    transition: "all 1s cubic-bezier(.15,.84,.84,1)",  // suggestion radians
-    transform: flipped ? `translate(${randomposition()}px,${randomposition()}px) rotate(${randomrotation()}deg)` : '',
+    transition: "all 1s cubic-bezier(.15,.84,.84,1)", // suggestion radians
+    transform: flipped
+      ? `translate(${randomposition()}px,${randomposition()}px) rotate(${randomrotation()}deg)`
+      : "",
   };
 }
