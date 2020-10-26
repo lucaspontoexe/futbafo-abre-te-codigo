@@ -14,6 +14,9 @@ function CardsDisplay(params) {
   </div>;
 }
 
+const cardWidth = 60;
+const maxDistance = 90;
+
 export default function Game(params) {
   return (
     <>
@@ -41,7 +44,31 @@ export default function Game(params) {
         make position and rotation go random using transform
 
         */}
+
+        <div className="card" style={processCardStyle(false)}></div>
+        <div className="card" style={processCardStyle(false)}></div>
+        <div className="card" style={processCardStyle(false)}></div>
+        <div className="card" style={processCardStyle(false)}></div>
       </div>
     </>
   );
+}
+
+function processCardStyle(flipped) {
+  const randomposition = () => (Math.random() - 0.5) * maxDistance * 2;
+  const randomrotation = () => (Math.random() - 0.5) * 360;
+
+
+  return {
+    position: "absolute",
+    top: window.innerHeight / 2 - cardWidth / 2 + (Math.random() - 0.5) * 20,
+    left: window.innerWidth / 2 - cardWidth / 2 + (Math.random() - 0.5) * 20,
+    width: cardWidth,
+    height: cardWidth,
+    background: "blue",
+    borderRadius: 5,
+    border: "1px solid black",
+    transition: "all 1s ease-out",  // suggestion radians
+    transform: flipped ? `translate(${randomposition()}px,${randomposition()}px) rotate(${randomrotation()}deg)` : ''
+  };
 }
