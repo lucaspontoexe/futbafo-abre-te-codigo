@@ -24,3 +24,38 @@
     </a>
   </p>
 </section>
+
+<style lang="scss">
+  section#tutorial {
+  //class praquele header?
+  text-align: center;
+  color: #60358f;
+  position: relative;
+
+  width: 90%;
+  margin: 0px auto;
+
+  h1 {
+    font-family: MuseoModerno;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 57px;
+    margin: 0.4em auto;
+  }
+
+  
+  p {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  .source {
+      font-size: 12px;
+  }
+}
+
+</style>
