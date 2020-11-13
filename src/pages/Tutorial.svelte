@@ -1,3 +1,7 @@
+<script>
+import NavBar from "../components/NavBar.svelte";
+
+</script>
 <style lang="scss">
   section#tutorial {
     //class praquele header?
@@ -31,6 +35,7 @@
   }
 </style>
 
+<NavBar/>
 <section id="tutorial">
   <h1>Como Jogar?</h1>
 
@@ -48,7 +53,7 @@
     de bater.
   </p>
 
-  <p className="source">
+  <p class="source">
     Fonte: Wikipédia.
     <br />
     Disponível em:
