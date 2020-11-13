@@ -1,6 +1,6 @@
 <script lang="ts">
   import Router from "svelte-spa-router";
-  import HelloWorld from "./HelloWorld.svelte";
+  // import HelloWorld from "./HelloWorld.svelte";
   import Login from "./pages/Login.svelte";
   import Profile from "./pages/Profile.svelte";
   import Test from "./pages/Test.svelte";
