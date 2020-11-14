@@ -1,9 +1,9 @@
 <script lang="ts">
   import { location, link } from "svelte-spa-router";
-  const profile = "";
-  const howtoplay = "";
-  const game = "";
-  const album = "";
+  const profile = "/images/icons/icon_perfil.png";
+  const howtoplay = "/images/icons/icon_comojogar.png";
+  const game = "/images/icons/icon_bafo.png";
+  const album = "/images/icons/icon_album.png";
 
   const links = [
     { location: "/profile", name: "Perfil", image: profile },
@@ -20,6 +20,9 @@
 
 <style lang="scss">
   nav.main-nav {
+
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+
     a {
       display: flex;
       flex-direction: column;
@@ -27,6 +30,8 @@
       padding: 0;
       text-decoration: inherit;
       color: inherit;
+      width: 100%;
+      text-align: center;
     }
 
     ul {
@@ -63,15 +68,17 @@
   }
 </style>
 
-<nav class="main-nav">
-  <ul>
-    {#each links as url}
-      <li class={$location === url.location ? 'active' : ''}>
-        <a href={url.location} use:link>
-          <img src={url.image} alt={url.alt || url.name} />
-          <span>{url.name}</span>
-        </a>
-      </li>
-    {/each}
-  </ul>
-</nav>
+{#if $location !== '/'}
+  <nav class="main-nav">
+    <ul>
+      {#each links as url}
+        <li class={$location === url.location ? 'active' : ''}>
+          <a href={url.location} use:link>
+            <img src={url.image} alt={url.alt || url.name} />
+            <span>{url.name}</span>
+          </a>
+        </li>
+      {/each}
+    </ul>
+  </nav>
+{/if}

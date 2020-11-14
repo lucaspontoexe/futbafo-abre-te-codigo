@@ -1,6 +1,4 @@
 <script lang="ts">
-  import NavBar from "../components/NavBar.svelte";
-
   let cards = [{ nome: "tem nome", selected: false }];
 </script>
 
@@ -43,7 +41,6 @@
   }
 </style>
 
-<NavBar />
 <section id="profile">
   <header>
     <h1>Perfil</h1>

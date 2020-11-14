@@ -1,7 +1,3 @@
-<script>
-import NavBar from "../components/NavBar.svelte";
-
-</script>
 <style lang="scss">
   section#tutorial {
     //class praquele header?
@@ -35,7 +31,6 @@ import NavBar from "../components/NavBar.svelte";
   }
 </style>
 
-<NavBar/>
 <section id="tutorial">
   <h1>Como Jogar?</h1>
 
