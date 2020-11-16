@@ -6,11 +6,11 @@
     list-style-type: none;
   }
 
-  .card-container {
+  .card-list {
+    padding: 10px;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    width: 700px;
   }
 
   .card {
@@ -24,7 +24,7 @@
     position: relative;
   }
 
-  .card:after {
+  .card .check {
     /*  ainda tem que fazer isso ser condicional. talvez como um div de verdade  */
     content: "";
     background-image: url("/images/icons/sinal_check.png");
@@ -43,14 +43,26 @@
   }
 </style>
 
-<ul class="card-container" aria-label="teste">
-  <li class="card" aria-label="card de um cavalo" aria-checked="true" />
-  <div class="card"><input type="checkbox" aria-label="alo teste" /></div>
-  <div class="card" />
-  <div class="card" />
-  <!--  will it wrap  -->
-  <div class="card" />
-  <div class="card" />
-  <div class="card" />
-  <div class="card" />
-</ul>
+<div class="card-container">
+  <ul class="card-list" aria-label="teste">
+    <li class="card" aria-label="card de um cavalo" aria-checked="true" />
+    <div class="card"><input type="checkbox" aria-label="alo teste" /></div>
+    <div class="card">
+      <div class="check" />
+    </div>
+    <div class="card">
+      <div class="check" />
+    </div>
+    <!--  will it wrap  -->
+    <div class="card">
+      <div class="check" />
+    </div>
+    <div class="card" />
+    <div class="card">
+      <div class="check" />
+    </div>
+    <div class="card">
+      <div class="check" />
+    </div>
+  </ul>
+</div>
