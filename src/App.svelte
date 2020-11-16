@@ -1,6 +1,7 @@
 <script lang="ts">
   import Router from "svelte-spa-router";
-import NavBar from "./components/NavBar.svelte";
+  import NavBar from "./components/NavBar.svelte";
+  import Game from "./pages/Game.svelte";
   // import HelloWorld from "./HelloWorld.svelte";
   import Login from "./pages/Login.svelte";
   import Profile from "./pages/Profile.svelte";
@@ -13,13 +14,12 @@ import NavBar from "./components/NavBar.svelte";
     "/profile": Profile,
     "/vocesabia": VoceSabia,
     "/tutorial": Tutorial,
-
     "/album": Test,
-    "/game": Test,
+    "/game": Game,
   };
 </script>
 
 <div id="app">
-  <NavBar/>
+  <NavBar />
   <Router {routes} />
 </div>
