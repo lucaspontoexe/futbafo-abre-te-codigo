@@ -14,8 +14,8 @@
 
     return `
     position: absolute;
-    left: ${window.innerWidth / 2 - 130 / 2 + (Math.random() - 0.5) * 20}px;
-    top: ${window.innerHeight / 2 - 120 / 2 + (Math.random() - 0.5) * 20}px;
+    left: calc(50% - ${130 / 2 + (Math.random() - 0.5) * 20}px);
+    top: calc(50% - ${120 / 2 + (Math.random() - 0.5) * 20}px);
     width: 130px;
     height: 120px;
     background-image: ${isCardTaken ? `url(${foto})` : `url(${bluecard})`};
@@ -56,6 +56,11 @@
       line-height: 57px;
       margin: 0.4em auto;
     }
+  }
+
+  .game {
+    width: 100%;
+    height: 70vh;
   }
 </style>
 
