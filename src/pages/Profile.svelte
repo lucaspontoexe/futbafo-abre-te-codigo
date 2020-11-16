@@ -52,7 +52,7 @@
     }
 
     hr {
-      width: 90%;
+      width: calc(100% - 20px);
     }
   }
 </style>
