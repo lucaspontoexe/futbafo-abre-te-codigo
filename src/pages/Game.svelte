@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { onMount } from "svelte";
+  import { selectedCards } from "../store";
+
   const foto = "images/cards/green.png";
   const bluecard = "/images/cards/blue.png";
   const maxDistance = 90;
@@ -33,6 +36,10 @@
     navigator.vibrate(50);
     doFlip = true;
   }
+
+  onMount(() => {
+    console.log($selectedCards);
+  });
 </script>
 
 <style lang="scss">

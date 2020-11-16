@@ -1,7 +1,21 @@
 <script lang="ts">
-import CardList from "../components/CardList.svelte";
+  import { push } from "svelte-spa-router";
 
-  let cards = [{ nome: "tem nome", selected: false }];
+  import CardList from "../components/CardList.svelte";
+  import dataset from "../dataset.json";
+  import { selectedCards } from "../store";
+  import { pickCards } from "../utils/pickCard";
+
+  let cards = pickCards(dataset, 4).map(c => ({...c, selected: false}));
+
+  function bafo() {
+    $selectedCards = [
+      ...$selectedCards,
+      ...cards.filter((c) => c.selected === true),
+    ];
+
+    push("/game");
+  }
 </script>
 
 <style lang="scss">
@@ -55,13 +69,15 @@ import CardList from "../components/CardList.svelte";
   </header>
   <hr />
 
-  <CardList/>
+  <CardList />
   <ul>
     {#each cards as card}
       <div class="card">
         <li>{card.nome}</li>
-        <input type="checkbox" name={card.nome} checked={card.selected} />
+        <input type="checkbox" name={card.nome} bind:checked={card.selected} />
       </div>
     {/each}
   </ul>
+
+  <button on:click={bafo}>Jogar</button>
 </section>
