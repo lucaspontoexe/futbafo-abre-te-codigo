@@ -1,15 +1,15 @@
 <script lang="ts">
-
   const foto = "images/cards/green.png";
   const bluecard = "/images/cards/blue.png";
   const maxDistance = 90;
 
+  let doFlip = false;
 
-function processCardStyle(flipped: boolean, isCardTaken: boolean) {
-  const randomposition = () => (Math.random() - 0.5) * maxDistance * 2;
-  const randomrotation = () => (Math.random() - 0.5) * 360;
+  function processCardStyle(flipped: boolean, isCardTaken: boolean) {
+    const randomposition = () => (Math.random() - 0.5) * maxDistance * 2;
+    const randomrotation = () => (Math.random() - 0.5) * 360;
 
-  return `
+    return `
     position: absolute;
     left: ${window.innerWidth / 2 - 130 / 2 + (Math.random() - 0.5) * 20}px;
     top: ${window.innerHeight / 2 - 120 / 2 + (Math.random() - 0.5) * 20}px;
@@ -20,9 +20,19 @@ function processCardStyle(flipped: boolean, isCardTaken: boolean) {
     background-size: cover;
     border-radius: 5px;
     transition: all 1s cubic-bezier(.15,.84,.84,1);
-    transform: ${flipped ? `translate(${randomposition()}px,${randomposition()}px) rotate(${randomrotation()}deg);`: ""}
+    transform: ${
+      flipped
+        ? `translate(${randomposition()}px,${randomposition()}px) rotate(${randomrotation()}deg);`
+        : ""
+    }
+    z-index: ${isCardTaken ? 1 : 0};
   `;
-}  
+  }
+
+  function flipCards() {
+    navigator.vibrate(50);
+    doFlip = true;
+  }
 </script>
 
 <style lang="scss">
@@ -46,13 +56,11 @@ function processCardStyle(flipped: boolean, isCardTaken: boolean) {
   <h1>Comece a jogar!</h1>
   <p>Bata no monte e tente virar as figurinhas</p>
   <div class="game">
-    <div style={processCardStyle(true , true)} />
-    <div style={processCardStyle(false, false)} />
-    <div style={processCardStyle(false, false)} />
-    <div style={processCardStyle(false, false)} />
+    <div class="card" style={processCardStyle(doFlip, true)} />
+    <div class="card" style={processCardStyle(doFlip, false)} />
+    <div class="card" style={processCardStyle(doFlip, false)} />
+    <div class="card" style={processCardStyle(doFlip, false)} />
   </div>
 
-  <button> Jogar </button>
-
-
+  <button on:click={flipCards}> Jogar </button>
 </div>
