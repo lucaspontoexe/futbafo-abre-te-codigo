@@ -47,6 +47,12 @@
     color: #60358f;
     position: relative;
     text-align: center;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
 
     h1 {
       font-family: MuseoModerno;
@@ -60,7 +66,7 @@
 
   .game {
     width: 100%;
-    height: 70vh;
+    height: 50vh;
   }
 </style>
 
