@@ -1,4 +1,6 @@
 <script lang="ts">
+import CardList from "../components/CardList.svelte";
+
   let cards = [{ nome: "tem nome", selected: false }];
 </script>
 
@@ -53,7 +55,7 @@
   </header>
   <hr />
 
-  <!-- {/* <CardList /> */} -->
+  <CardList/>
   <ul>
     {#each cards as card}
       <div class="card">
