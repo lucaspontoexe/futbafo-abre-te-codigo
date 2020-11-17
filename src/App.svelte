@@ -1,6 +1,7 @@
 <script lang="ts">
   import Router from "svelte-spa-router";
   import NavBar from "./components/NavBar.svelte";
+  import Album from "./pages/Album.svelte";
   import Game from "./pages/Game.svelte";
   import Login from "./pages/Login.svelte";
   import Profile from "./pages/Profile.svelte";
@@ -13,7 +14,7 @@
     "/profile": Profile,
     "/vocesabia": VoceSabia,
     "/tutorial": Tutorial,
-    "/album": Test,
+    "/album": Album,
     "/game": Game,
   };
 </script>
