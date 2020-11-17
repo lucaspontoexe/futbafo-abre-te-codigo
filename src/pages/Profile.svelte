@@ -2,11 +2,11 @@
   import { push } from "svelte-spa-router";
 
   import CardList from "../components/CardList.svelte";
-  import dataset from "../dataset.json";
+  import metadados from "../metadados.json";
   import { selectedCards } from "../store";
   import { pickCards } from "../utils/pickCard";
 
-  let cards = pickCards(dataset, 4).map(c => ({...c, selected: false}));
+  let cards = pickCards(metadados, 4).map(c => ({...c, selected: false}));
 
   function bafo() {
     $selectedCards = [
@@ -69,7 +69,7 @@
   </header>
   <hr />
 
-  <CardList />
+  <CardList {cards} />
   <ul>
     {#each cards as card}
       <div class="card">
