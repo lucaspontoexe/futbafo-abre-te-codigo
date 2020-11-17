@@ -1,10 +1,16 @@
+<script lang="ts">
+  import type { NewCard } from "../types/Card";
+
+  export const cards: Array<NewCard> = [];
+</script>
+
 <style>
-  ul,
+  /* ul,
   li {
     padding: 0;
     margin: 0;
     list-style-type: none;
-  }
+  } */
 
   .card-list {
     padding: 10px;
@@ -44,25 +50,20 @@
 </style>
 
 <div class="card-container">
-  <ul class="card-list" aria-label="teste">
-    <li class="card" aria-label="card de um cavalo" aria-checked="true" />
-    <div class="card"><input type="checkbox" aria-label="alo teste" /></div>
+  <div class="card-list" aria-label="teste">
+    <div class="card"><input type="checkbox" aria-label="alô teste" /></div>
+
     <div class="card">
-      <div class="check" />
+      <!-- hidden -->
+      <input type="checkbox" id="card_1" />
+      <label for="card_1"><div class="check" />
+      </label>
     </div>
+
     <div class="card">
-      <div class="check" />
+      <input type="checkbox" id="card_2" />
+      <label for="card_2"><div class="check" />
+      </label>
     </div>
-    <!--  will it wrap  -->
-    <div class="card">
-      <div class="check" />
-    </div>
-    <div class="card" />
-    <div class="card">
-      <div class="check" />
-    </div>
-    <div class="card">
-      <div class="check" />
-    </div>
-  </ul>
+  </div>
 </div>
