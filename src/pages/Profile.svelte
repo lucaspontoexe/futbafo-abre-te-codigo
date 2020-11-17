@@ -3,7 +3,7 @@
 
   // import CardList from "../components/CardList.svelte";
   import metadados from "../metadados.json";
-  import { selectedCards } from "../store";
+  // import { selectedCards } from "../store";
   import type { NewCard } from "../types/Card";
   import { pickCards } from "../utils/pickCard";
 
@@ -17,10 +17,10 @@
   }));
 
   function bafo() {
-    $selectedCards = [
-      ...$selectedCards,
-      ...cards.filter((c) => c.selected === true),
-    ];
+    // $selectedCards = [
+    //   ...$selectedCards,
+    //   ...cards.filter((c) => c.selected === true),
+    // ];
 
     push("/game");
   }
@@ -75,8 +75,8 @@
     box-sizing: border-box;
     width: 160px;
     height: 90px;
+    object-fit: cover;
     border: 6px solid green;
-    background-image: url("/images/cards/blue.png");
     background-size: 160px;
     background-position: center;
     position: relative;
@@ -113,26 +113,10 @@
   </header>
   <hr />
 
-  <!-- <CardList {cards} /> -->
-  <!-- <ul>
-    {#each cards as card}
-      <div class="card">
-        <li>{card.nome}</li>
-        <input type="checkbox" name={card.nome} bind:checked={card.selected} />
-      </div>
-    {/each}
-  </ul> -->
-
   <div class="card-container">
     <div class="card-list" aria-label="teste">
       {#each cards as card}
-        <div
-          class="card"
-          style={`background-image: url(tempimages/${card.nome}.png);`}>
-          <!-- <input type="checkbox" id="card_1" /> -->
-          <!-- <label for="card_1"><div class="check" /> -->
-          <!-- </label> -->
-        </div>
+        <img class="card" src="tempimages/{card.nome}.png" alt={card.legenda} />
       {/each}
     </div>
   </div>
