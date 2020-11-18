@@ -1,4 +1,7 @@
 <script lang="ts">
+import AlbumCard from "./AlbumCard.svelte";
+
+
   export let title = "As Donas da Bola";
   export let color = "green";
   const altImages = {
@@ -50,36 +53,6 @@
     padding: 0px 10px;
   }
 
-  .card {
-    display: block;
-    // flex-direction: column;
-    width: calc(50% - 10px);
-    height: auto;
-
-    img {
-      width: 100%;
-    }
-
-    .description {
-      display: flex;
-      flex-direction: row;
-      // height: 3em;
-    }
-
-    p {
-      // background: blue;
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 1em;
-      // line-height: 0.7em;
-      padding: 5px;
-      flex: 1;
-    }
-  }
-
-  // .card.inactive {
-  // }
 </style>
 
 <section class="album-page" style={`background-color: ${colorData[color][1]}`}>
@@ -90,20 +63,8 @@
 
   <div class="cards-wrapper">
     <!-- for each card of color -->
-    <div class="card">
-      <img class="picture" src="tempimages/48.png" alt="figurinha" />
-      <div class="description">
-        <p>
-          Juliana Cabral posa para foto após a conquista da medalha de prata dos
-          Jogos Olímpicos de Atenas, em 2004.
-        </p>
-        <!-- button? -->
-        <button>
-          <img src="images/icons/icon_saiba_mais.png" alt="Saiba mais" />
-        </button>
-      </div>
-    </div>
+  
+    <AlbumCard/>
 
-    <div class="card inactive" />
   </div>
 </section>
