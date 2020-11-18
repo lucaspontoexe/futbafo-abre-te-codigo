@@ -1,7 +1,9 @@
 <style lang="scss">
   section.album-page {
     background-color: #d3f9dd;
-    width: 100vw;
+    min-width: 100vw;
+    height: calc(100vh - 50px); // workaround? height - header
+    scroll-snap-align: start;
   }
 
   header {
