@@ -15,7 +15,9 @@
 </style>
 
 <section id="album">
-  <AlbumPage />
-  <AlbumPage />
-  <AlbumPage />
+  <AlbumPage title="As Donas da Bola" color="green"/>
+  <AlbumPage title="A Seleção!" color="yellow"/>
+  <!-- VoceSabia -->
+  <AlbumPage title="Elas e seus Clubes" color="red"/>
+  <AlbumPage title="Objetos e Memórias" color="blue"/>
 </section>

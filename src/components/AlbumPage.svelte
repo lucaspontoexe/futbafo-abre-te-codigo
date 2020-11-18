@@ -1,6 +1,24 @@
+<script lang="ts">
+  export let title = "As Donas da Bola";
+  export let color = "green";
+  const altImages = {
+    green: "Figurinhas Verdes",
+    blue: "Figurinhas Azuis",
+    yellow: "Figurinhas Amarelas",
+    red: "Figurinhas Vermelhas",
+  };
+
+  const colorData = {
+    // text / background
+    green: ["#457351", "#d3f9dd"],
+    blue: ["#6A80BE", "#EAEFFC"],
+    yellow: ["#FBBD02", "#FFFACE"],
+    red: ["#A32C2A", "#F5DFDF"],
+  };
+</script>
+
 <style lang="scss">
   section.album-page {
-    background-color: #d3f9dd;
     min-width: 100vw;
     height: calc(100vh - 50px); // workaround? height - header
     scroll-snap-align: start;
@@ -64,13 +82,14 @@
   // }
 </style>
 
-<section class="album-page">
+<section class="album-page" style={`background-color: ${colorData[color][1]}`}>
   <header>
-    <img src="images/cards/green.png" alt="Figurinhas Verdes" />
-    <h1>As Donas da Bola</h1>
+    <img src={`images/cards/${color}.png`} alt={altImages[color]} />
+    <h1 style={`color: ${colorData[color][0]}`}>{title}</h1>
   </header>
 
   <div class="cards-wrapper">
+    <!-- for each card of color -->
     <div class="card">
       <img class="picture" src="tempimages/48.png" alt="figurinha" />
       <div class="description">
