@@ -2,7 +2,8 @@
   .card {
     display: block;
     // flex-direction: column;
-    width: calc(50% - 10px);
+    width: 100%; // experimentar larguras diferentes;
+    max-width: 350px;
     height: auto;
 
     .img-holder {

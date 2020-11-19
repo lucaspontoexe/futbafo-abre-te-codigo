@@ -23,8 +23,9 @@ import AlbumCard from "./AlbumCard.svelte";
 <style lang="scss">
   section.album-page {
     min-width: 100vw;
-    height: calc(100vh - 50px); // workaround? height - header
+    min-height: calc(100vh - 50px); // workaround? height - header
     scroll-snap-align: start;
+    padding-bottom: 20px;
   }
 
   header {
@@ -65,6 +66,7 @@ import AlbumCard from "./AlbumCard.svelte";
     <!-- for each card of color -->
   
     <AlbumCard/>
+    <AlbumCard/>  
 
   </div>
 </section>
