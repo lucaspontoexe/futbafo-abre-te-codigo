@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { link, push } from "svelte-spa-router";
   import { nickname, userCards } from "../store";
+  import metadados from "../metadados.json";
 
   let data = {
     email: "",
@@ -17,18 +18,21 @@
       body: JSON.stringify(data),
     }).then((r) => r.json());
 
-    const cardsData = await fetch("http://localhost:8010/proxy/api/get_cards.php", {
-      credentials: "include",
-      mode: "cors",
-    }).then((r) => r.json());
+    const cardsData = await fetch(
+      "http://localhost:8010/proxy/api/get_cards.php",
+      {
+        credentials: "include",
+        mode: "cors",
+      }
+    ).then((r) => r.json());
 
     // if not sucess == true, give a warning
 
     $nickname = loginData.nick;
-    // $userCards = cardsData;
+    $userCards = metadados.filter((item) => cardsData.cards.includes(item.nome));
 
     console.log(loginData);
-    console.log(cardsData);
+    console.log($userCards);
 
     push("/profile");
   }

@@ -1,21 +1,15 @@
 <script lang="ts">
   import { push } from "svelte-spa-router";
-
-  // import CardList from "../components/CardList.svelte";
   import metadados from "../metadados.json";
-import { nickname } from "../store";
-  // import { selectedCards } from "../store";
+  import { nickname, userCards } from "../store";
   import type { NewCard } from "../types/Card";
   import { pickCards } from "../utils/pickCard";
 
-  interface SelectableCard extends NewCard {
-    selected: boolean;
-  }
+  // interface SelectableCard extends NewCard {
+  //   selected: boolean;
+  // }
 
-  let cards: Array<SelectableCard> = pickCards(metadados, 4).map((c) => ({
-    ...c,
-    selected: false,
-  }));
+  let cards: Array<NewCard> = $userCards;
 
   function bafo() {
     // $selectedCards = [
