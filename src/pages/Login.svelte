@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import axios from "axios";
   import { link, push } from "svelte-spa-router";
   import { nickname, userCards } from "../store";
 
@@ -8,30 +7,27 @@
     email: "",
     senha: "",
   };
+  // `
 
   let form: HTMLFormElement;
   async function submit() {
-    const loginData = await fetch(
-      "http://localhost:8000/includes/login_json.php",
-      {
-        method: "POST",
-        credentials: "same-origin",
-        body: JSON.stringify(data),
-      }
-    ).then((r) => r.json());
+    const loginData = await fetch("http://localhost:8010/proxy/api/login.php", {
+      method: "POST",
+      credentials: "same-origin",
+      body: JSON.stringify(data),
+    }).then((r) => r.json());
 
-    const cardsresponse = await axios.post(
-      "http://localhost:8000/game/get_user_cards.php",
-      null,
-      { withCredentials: true }
-    );
-    const cardsData = cardsresponse.data;
+    const cardsData = await fetch("http://localhost:8010/proxy/api/get_cards.php", {
+      credentials: "include",
+      mode: "cors",
+    }).then((r) => r.json());
 
     // if not sucess == true, give a warning
 
     $nickname = loginData.nick;
     // $userCards = cardsData;
 
+    console.log(loginData);
     console.log(cardsData);
 
     push("/profile");

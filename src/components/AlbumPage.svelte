@@ -42,13 +42,7 @@
       display: flex;
       flex-direction: row;
       height: 3em;
-      
-      
     }
-  }
-
-  .card.inactive {
-
   }
 </style>
 
@@ -84,6 +78,5 @@
     </div>
 
     <div class="card inactive" />
-
   </div>
 </section>
