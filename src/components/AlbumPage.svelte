@@ -50,7 +50,8 @@ import AlbumCard from "./AlbumCard.svelte";
   .cards-wrapper {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    justify-content: center;
+    gap: 5px;
     padding: 0px 10px;
   }
 

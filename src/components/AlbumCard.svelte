@@ -2,7 +2,7 @@
   .card {
     display: block;
     // flex-direction: column;
-    width: 100%; // experimentar larguras diferentes;
+    width: calc(50% - 10px); // experimentar larguras diferentes;
     max-width: 350px;
     height: auto;
 
@@ -26,7 +26,7 @@
       font-family: Roboto;
       font-style: normal;
       font-weight: normal;
-      font-size: 1em;
+      font-size: 0.7em;
       // line-height: 0.7em;
       padding: 5px;
       flex: 1;
