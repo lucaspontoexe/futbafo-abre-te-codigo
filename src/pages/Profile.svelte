@@ -3,6 +3,7 @@
 
   // import CardList from "../components/CardList.svelte";
   import metadados from "../metadados.json";
+import { nickname } from "../store";
   // import { selectedCards } from "../store";
   import type { NewCard } from "../types/Card";
   import { pickCards } from "../utils/pickCard";
@@ -104,7 +105,7 @@
 <section id="profile">
   <header>
     <h1>Perfil</h1>
-    <p>Jogador,</p>
+    <p>{$nickname || 'Jogador'},</p>
     <p>
       <strong>Você tem </strong>
       <span>{cards.length}</span>
