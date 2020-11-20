@@ -26,6 +26,7 @@ import AlbumCard from "./AlbumCard.svelte";
     min-height: calc(100vh - 50px); // workaround? height - header
     scroll-snap-align: start;
     padding-bottom: 20px;
+    box-sizing: border-box;
   }
 
   header {
