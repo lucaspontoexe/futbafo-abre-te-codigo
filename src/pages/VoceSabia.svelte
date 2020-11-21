@@ -1,13 +1,15 @@
 <script lang="ts">
   //compatibilidade com o JSX
-  const logo = "";
-  const socials = "";
-  const logoMuseu = "";
+  const logo = "images/logos/logo_roxo.png";
+  const socials = "images/icons/icon_socialmedia.png";
+  const logoMuseu = "images/logos/museu_futebol_branco.png";
 </script>
 
 <style lang="scss">
-  section#voce-sabia {
-    width: 100%;
+  section.voce-sabia {
+    min-width: 100vw;
+    min-height: calc(100vh - 50px); // workaround? height - header
+    scroll-snap-align: start;
     padding: 0px 10%;
     box-sizing: border-box;
     text-align: center;
@@ -53,15 +55,15 @@
       cursor: pointer;
     }
 
-    .bottom-text {
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 16px;
+    // .bottom-text {
+    //   font-family: Roboto;
+    //   font-style: normal;
+    //   font-weight: 500;
+    //   font-size: 12px;
+    //   line-height: 16px;
 
-      margin-top: 20px;
-    }
+    //   margin-top: 20px;
+    // }
 
     .logo-museu-futebol {
       padding: 0px;
@@ -73,7 +75,7 @@
   }
 </style>
 
-<section id="voce-sabia">
+<section class="voce-sabia">
   <img src={logo} class="logo-donas" alt="Logo Futebafo Donas da Bola" />
   <h1>Você Sabia?</h1>
   <p>
@@ -96,13 +98,13 @@
     <img src={socials} alt="Redes Sociais" />
   </div>
 
-  <p class="bottom-text">
+  <!-- <p class="bottom-text">
     Essa foi só uma das dificuldades que nossas guerreiras enfrentaram para que
     o futebol feminino brasileiro chegasse aos títulos. Por isso, essa edição do
     jogo é dedicado a elas! Complete seu álbum com as figurinhas fotos
     históricas do acervo de algumas jogadoras que passaram pela nossa seleção.
     Vem com a gente!
-  </p>
+  </p> -->
   <div class="logo-museu-futebol">
     <img src={logoMuseu} alt="Logo do Museu do Futebol" />
   </div>

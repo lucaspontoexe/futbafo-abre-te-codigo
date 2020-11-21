@@ -1,5 +1,6 @@
 <script>
-  import AlbumPage from "../components/AlbumPage.svelte";
+  import VoceSabia from "../pages/VoceSabia.svelte";
+import AlbumPage from "../components/AlbumPage.svelte";
 
 //   window.innerWidth
 //   $0.scrollWidth // album scroll width
@@ -19,8 +20,8 @@
 
 <section id="album">
   <AlbumPage title="As Donas da Bola" color="green"/>
+  <VoceSabia/>
   <AlbumPage title="A Seleção!" color="yellow"/>
-  <!-- VoceSabia -->
   <AlbumPage title="Elas e seus Clubes" color="red"/>
   <AlbumPage title="Objetos e Memórias" color="blue"/>
 </section>
