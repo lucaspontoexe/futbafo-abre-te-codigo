@@ -27,7 +27,6 @@
       font-style: normal;
       font-weight: bold;
       font-size: 36px;
-      line-height: 57px;
 
       margin-top: 0px;
       margin-bottom: 0.4em;
@@ -38,11 +37,17 @@
       font-style: normal;
       font-weight: 300;
       font-size: 20px;
-      line-height: 23px;
+
+      margin: 1em 0px;
     }
 
     .source {
       font-size: 12px;
+
+      a {
+        text-decoration: none;
+        color: white;
+      }
     }
 
     .hashtags {
@@ -53,23 +58,14 @@
     .logo-redes-sociais img {
       max-width: 240px;
       cursor: pointer;
+      margin-bottom: 1em;
     }
-
-    // .bottom-text {
-    //   font-family: Roboto;
-    //   font-style: normal;
-    //   font-weight: 500;
-    //   font-size: 12px;
-    //   line-height: 16px;
-
-    //   margin-top: 20px;
-    // }
 
     .logo-museu-futebol {
       padding: 0px;
       height: 50px;
       img {
-        height: 100%;
+        height: 60%;
       }
     }
   }
