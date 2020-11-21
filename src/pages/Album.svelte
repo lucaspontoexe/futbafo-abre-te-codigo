@@ -1,5 +1,8 @@
 <script>
   import AlbumPage from "../components/AlbumPage.svelte";
+
+//   window.innerWidth
+//   $0.scrollWidth // album scroll width
 </script>
 
 <style>

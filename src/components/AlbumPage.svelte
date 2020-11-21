@@ -1,6 +1,5 @@
 <script lang="ts">
-import AlbumCard from "./AlbumCard.svelte";
-
+  import AlbumCard from "./AlbumCard.svelte";
 
   export let title = "As Donas da Bola";
   export let color = "green";
@@ -55,7 +54,6 @@ import AlbumCard from "./AlbumCard.svelte";
     gap: 5px;
     padding: 0px 10px;
   }
-
 </style>
 
 <section class="album-page" style={`background-color: ${colorData[color][1]}`}>
@@ -66,9 +64,8 @@ import AlbumCard from "./AlbumCard.svelte";
 
   <div class="cards-wrapper">
     <!-- for each card of color -->
-  
-    <AlbumCard/>
-    <AlbumCard/>  
 
+    <AlbumCard />
+    <AlbumCard />
   </div>
 </section>
