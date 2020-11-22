@@ -20,7 +20,7 @@
 
       <!-- filter -->
       {#each cards.filter((c) => c.color === color) as card}
-        <img class="card" src="tempimages/{card.nome}.png" alt={card.legenda} />
+        <img class="card" src="tempimages/thumbs/{card.nome}.jpg" alt={card.legenda} />
       {/each}
 
     </div>

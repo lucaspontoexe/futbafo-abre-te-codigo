@@ -1,4 +1,5 @@
 <script lang="ts">
+  import CardList from "../components/CardList.svelte";
   import { onMount } from "svelte";
   import { selectedCards } from "../store";
 
@@ -7,6 +8,9 @@
   const maxDistance = 90;
 
   let doFlip = false;
+
+  type gameStates = "SELECTING" | "INGAME" | "POST_GAME";
+  let gameState: gameStates = "SELECTING";
 
   function processCardStyle(flipped: boolean, isCardTaken: boolean) {
     const randomposition = () => (Math.random() - 0.5) * maxDistance * 2;
@@ -47,7 +51,7 @@
     color: #60358f;
     position: relative;
     text-align: center;
-    
+
     font-family: Roboto;
     font-style: normal;
     font-weight: 300;
@@ -70,15 +74,34 @@
   }
 </style>
 
-<div class="game-wrapper">
-  <h1>Comece a jogar!</h1>
-  <p>Bata no monte e tente virar as figurinhas</p>
-  <div class="game">
-    <div class="card" style={processCardStyle(doFlip, true)} />
-    <div class="card" style={processCardStyle(doFlip, false)} />
-    <div class="card" style={processCardStyle(doFlip, false)} />
-    <div class="card" style={processCardStyle(doFlip, false)} />
-  </div>
+<section id="game">
+  {#if gameState === 'SELECTING'}
+    <header>
+      <h1>Bafo!</h1>
+      <p>Escolha no mínimo 3 figurinhas para o monte.</p>
+      <hr />
+    </header>
+    <CardList />
+  {/if}
 
-  <button on:click={flipCards}> Jogar </button>
-</div>
+  {#if gameState === 'INGAME'}
+    <div class="game-wrapper">
+      <h1>Comece a jogar!</h1>
+      <p>Bata no monte e tente virar as figurinhas</p>
+      <div class="game">
+        <div class="card" style={processCardStyle(doFlip, true)} />
+        <div class="card" style={processCardStyle(doFlip, false)} />
+        <div class="card" style={processCardStyle(doFlip, false)} />
+        <div class="card" style={processCardStyle(doFlip, false)} />
+      </div>
+
+      <button on:click={flipCards}> Jogar </button>
+    </div>
+  {/if}
+
+  {#if gameState === "POST_GAME"}
+    <div class="postgame">
+      parabéns
+    </div>
+  {/if}
+</section>
