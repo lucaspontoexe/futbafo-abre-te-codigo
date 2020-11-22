@@ -31,9 +31,9 @@
   header {
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 8em; //2em?
     width: 100%;
-    // padding: 0px 10%;
 
     img {
       height: 60%;
@@ -43,7 +43,7 @@
       font-family: MuseoModerno;
       font-style: normal;
       font-weight: bold;
-      font-size: 2em;
+      font-size: 2em; // 1.5em?
     }
   }
 
