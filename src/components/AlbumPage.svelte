@@ -65,7 +65,9 @@
   <div class="cards-wrapper">
     <!-- for each card of color -->
 
-    <AlbumCard />
-    <AlbumCard />
+    <AlbumCard cardID="48" />
+    <AlbumCard cardID="49" />
+    <AlbumCard cardID="50" />
+    <AlbumCard cardID="51" />
   </div>
 </section>

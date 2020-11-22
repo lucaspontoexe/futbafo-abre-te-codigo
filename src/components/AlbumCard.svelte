@@ -1,3 +1,8 @@
+<script lang="ts">
+  export let cardID = "48";
+  import metadados from '../metadados.json';
+</script>
+
 <style lang="scss">
   .card {
     display: block;
@@ -36,13 +41,12 @@
 
 <div class="card">
   <div class="img-holder">
-    <img class="picture" src="tempimages/48.png" alt="figurinha" />
+    <img class="picture" src={`tempimages/${cardID}.png`} alt="figurinha" />
   </div>
 
   <div class="description">
     <p>
-      Juliana Cabral posa para foto após a conquista da medalha de prata dos
-      Jogos Olímpicos de Atenas, em 2004.
+      {metadados.find(c => c.nome === cardID).legenda}
     </p>
     <!-- button? -->
     <button>
