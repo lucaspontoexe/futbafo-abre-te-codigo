@@ -5,7 +5,6 @@
   import Game from "./pages/Game.svelte";
   import Login from "./pages/Login.svelte";
   import Profile from "./pages/Profile.svelte";
-  import Test from "./pages/Test.svelte";
   import Tutorial from "./pages/Tutorial.svelte";
   import VoceSabia from "./pages/VoceSabia.svelte";
 

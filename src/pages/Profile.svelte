@@ -1,20 +1,23 @@
 <script lang="ts">
   import { push } from "svelte-spa-router";
-
-  // import CardList from "../components/CardList.svelte";
-  import metadados from "../metadados.json";
-  // import { selectedCards } from "../store";
+  import { nickname, userCards } from "../store";
   import type { NewCard } from "../types/Card";
-  import { pickCards } from "../utils/pickCard";
+  // import metadados from "../metadados.json";
+  // import { pickCards } from "../utils/pickCard";
 
-  interface SelectableCard extends NewCard {
-    selected: boolean;
-  }
+  let cards: Array<NewCard> = $userCards;
+  // for testing:
+  // let cards: Array<NewCard> = pickCards(metadados, 5);
 
-  let cards: Array<SelectableCard> = pickCards(metadados, 4).map((c) => ({
-    ...c,
-    selected: false,
-  }));
+    // TRANSFORMAR ISSO EM MÓDULO?
+    // const colors = ["red", "blue", "green", "yellow"];
+
+  // tem jeito melhor de fazer isso.
+  // 1. array de cores. foreach duplo. a função filter vai lá pro markup  
+  const redCards = cards.filter((c) => c.color === "red");
+  const blueCards = cards.filter((c) => c.color === "blue");
+  const greenCards = cards.filter((c) => c.color === "green");
+  const yellowCards = cards.filter((c) => c.color === "yellow");
 
   function bafo() {
     // $selectedCards = [
@@ -64,22 +67,36 @@
     }
   }
 
-  .card-list {
-    padding: 10px;
+  .card-container {
+    position: relative;
+    margin: 0px auto;
+    width: calc(100% - 20px);
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: row;
+    flex: 1;
+    gap: 4px; // 2px?
+  }
+
+  .card-list {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 6px;
+
+    img {
+      width: 100%;
+    }
   }
 
   .card {
     box-sizing: border-box;
-    width: 160px;
+    padding: 4px;
     height: 90px;
     object-fit: cover;
-    border: 6px solid green;
     background-size: 160px;
     background-position: center;
     position: relative;
+    border: 1px solid rgba($color: #000000, $alpha: 0.2);
   }
 
   // .card .check {
@@ -104,18 +121,38 @@
 <section id="profile">
   <header>
     <h1>Perfil</h1>
-    <p>Jogador,</p>
+    <p>{$nickname || 'Jogador'},</p>
     <p>
       <strong>Você tem </strong>
       <span>{cards.length}</span>
-      <strong>figurinhas</strong>
+      <strong>figurinha{cards.length === 1 ? '' : 's'}</strong>
     </p>
   </header>
   <hr />
 
   <div class="card-container">
     <div class="card-list" aria-label="teste">
-      {#each cards as card}
+      <img src="images/cards/green.png" alt="Cartas Verdes" />
+      {#each greenCards as card}
+        <img class="card" src="tempimages/{card.nome}.png" alt={card.legenda} />
+      {/each}
+    </div>
+
+    <div class="card-list" aria-label="teste">
+      <img src="images/cards/yellow.png" alt="Cartas Amarelas" />
+      {#each yellowCards as card}
+        <img class="card" src="tempimages/{card.nome}.png" alt={card.legenda} />
+      {/each}
+    </div>
+    <div class="card-list" aria-label="teste">
+      <img src="images/cards/red.png" alt="Cartas Vermelhas" />
+      {#each redCards as card}
+        <img class="card" src="tempimages/{card.nome}.png" alt={card.legenda} />
+      {/each}
+    </div>
+    <div class="card-list" aria-label="teste">
+      <img src="images/cards/blue.png" alt="Cartas Azuis" />
+      {#each blueCards as card}
         <img class="card" src="tempimages/{card.nome}.png" alt={card.legenda} />
       {/each}
     </div>
