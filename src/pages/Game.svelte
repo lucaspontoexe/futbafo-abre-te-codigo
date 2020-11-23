@@ -1,5 +1,5 @@
 <script lang="ts">
-  import CardList from "../components/CardList.svelte";
+  import CardList from "components/CardList.svelte";
   import { onMount } from "svelte";
   import { selectedCards } from "../store";
 

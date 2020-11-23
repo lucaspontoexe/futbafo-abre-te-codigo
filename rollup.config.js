@@ -6,6 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import json from '@rollup/plugin-json';
+import alias from '@rollup/plugin-alias';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -64,6 +65,16 @@ export default {
 			sourceMap: !production,
 			inlineSources: !production,
 			baseUrl: './src'
+		}),
+		
+		alias({
+			entries: [
+				{find: 'components', replacement: 'src/components'},
+				{find: 'utils', replacement: 'src/utils'},
+				{find: 'types', replacement: 'src/types'},
+				{find: 'pages', replacement: 'src/pages'},
+				{find: 'services', replacement: 'src/services'},
+			]
 		}),
 
 		json(),
