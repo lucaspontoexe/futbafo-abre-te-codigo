@@ -81,7 +81,8 @@
       <p>Escolha no mínimo 3 figurinhas para o monte.</p>
       <hr />
     </header>
-    <CardList />
+    <CardList selectable/>
+    <button>Começar!</button>
   {/if}
 
   {#if gameState === 'INGAME'}

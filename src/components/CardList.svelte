@@ -3,32 +3,28 @@
 
   import { userCards } from "../store";
   import type { NewCard } from "../types/Card";
-  let cards: Array<NewCard> = $userCards;
-  // for testing:
-  // let cards: Array<NewCard> = pickCards(metadados, 5);
 
-  // TRANSFORMAR ISSO EM MÓDULO?
-  const colors = [ "green", "yellow","red", "blue"];
+  interface SelectableCard extends NewCard {
+    selected: boolean;
+  }
+
+  let cards: Array<SelectableCard> = $userCards.map((i) => ({
+    ...i,
+    selected: false,
+  }));
+  // // for testing:
+  // import { pickCards } from "../utils/pickCard";
+  // import metadados from "../metadados.json";
+  // let cards: Array<SelectableCard> = pickCards(metadados, 5).map((i) => ({
+  //   ...i,
+  //   selected: false,
+  // }));
+
+  const colors = ["green", "yellow", "red", "blue"];
+  export let selectable = false;
 </script>
 
-<div class="card-container">
-
-  {#each colors as color}
-
-    <div class="card-list" aria-label="teste">
-      <img src={`images/cards/${color}.png`} alt={colorNames[color]} />
-
-      <!-- filter -->
-      {#each cards.filter((c) => c.color === color) as card}
-        <img class="card" src="tempimages/thumbs/{card.nome}.jpg" alt={card.legenda} />
-      {/each}
-
-    </div>
-  {/each}
-</div>
-
 <style lang="scss">
-  
   .card-container {
     position: relative;
     margin: 0px auto;
@@ -59,23 +55,73 @@
     background-position: center;
     position: relative;
     border: 1px solid rgba($color: #000000, $alpha: 0.2);
+    transition: border 100ms;
+
+    &.selected {
+      border: 4px solid lighten($color: green, $amount: 0.4);
+    }
+
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    // input {
+    //   position: absolute;
+    //   right: 0px;
+    //   bottom: 0px;
+    // }
   }
 
-  // .card .check {
-  //   /*  ainda tem que fazer isso ser condicional. talvez como um div de verdade  */
-  //   content: "";
-  //   background-image: url("/images/icons/sinal_check.png");
-  //   background-size: contain;
-  //   background-position: right bottom;
+  .card .check {
+    background-image: url("/images/icons/sinal_check.png");
+    background-size: contain;
+    background-position: right bottom;
 
-  //   position: absolute;
-  //   width: 40px;
-  //   height: 40px;
+    position: absolute;
+    width: 20px;
+    height: 20px;
 
-  //   /*  0px; -20px pra sair da borda. */
-  //   bottom: 0px;
-  //   right: 0px;
+    /*  0px; -20px pra sair da borda. */
+    bottom: 0px;
+    right: 0px;
 
-  //   z-index: 2;
-  // }
+    z-index: 2;
+  }
 </style>
+
+<div class="card-container">
+  {#each colors as color}
+    <div class="card-list" aria-label="teste">
+      <img src={`images/cards/${color}.png`} alt={colorNames[color]} />
+
+      <!-- TEM jeitos melhores de fazer isso? Com certeza. -->
+      {#if selectable}
+        <!-- filter: código pras fileiras (selecionáveis) -->
+        {#each cards.filter((c) => c.color === color) as card}
+        <!-- com ARIA e tudo o que tem direito -->
+          <div
+            class={card.selected ? 'card selected' : 'card'}
+            role="switch"
+            aria-checked={card.selected}
+            on:click={() => (card.selected = !card.selected)}>
+            <!-- <input type="checkbox" bind:checked={card.selected}> -->
+
+            {#if card.selected}
+              <div class="check" />
+            {/if}
+
+            <img src="tempimages/thumbs/{card.nome}.jpg" alt={card.legenda} />
+          </div>
+        {/each}
+      {:else}
+        <!-- caso a seleção esteja desligada, só mostrar as figurinhas -->
+        {#each cards.filter((c) => c.color === color) as card}
+          <div class="card">
+            <img src="tempimages/thumbs/{card.nome}.jpg" alt={card.legenda} />
+          </div>
+        {/each}
+      {/if}
+    </div>
+  {/each}
+</div>
