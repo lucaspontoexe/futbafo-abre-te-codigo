@@ -3,25 +3,33 @@
 
   import { userCards } from "../store";
   import type { NewCard } from "../types/Card";
-
   interface SelectableCard extends NewCard {
     selected: boolean;
   }
 
+  console.log('user cards: ', $userCards);
   let cards: Array<SelectableCard> = $userCards.map((i) => ({
     ...i,
     selected: false,
   }));
-  // // for testing:
+  // for testing:
   // import { pickCards } from "../utils/pickCard";
   // import metadados from "../metadados.json";
   // let cards: Array<SelectableCard> = pickCards(metadados, 5).map((i) => ({
   //   ...i,
+  // //  _id: shortid.generate(),
   //   selected: false,
   // }));
 
   const colors = ["green", "yellow", "red", "blue"];
   export let selectable = false;
+  export let selectedCards: Array<string> = [];
+
+  $: {
+    // por algum motivo isso parece rodar duas vezes, mas e agora
+    selectedCards = cards.filter((card) => card.selected).map((c) => c.nome);
+    // console.log("[debug] chosen cards: ", selectedCards);
+  }
 </script>
 
 <style lang="scss">
@@ -99,7 +107,7 @@
       {#if selectable}
         <!-- filter: código pras fileiras (selecionáveis) -->
         {#each cards.filter((c) => c.color === color) as card}
-        <!-- com ARIA e tudo o que tem direito -->
+          <!-- com ARIA e tudo o que tem direito -->
           <div
             class={card.selected ? 'card selected' : 'card'}
             role="switch"

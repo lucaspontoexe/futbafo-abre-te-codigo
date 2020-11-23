@@ -1,7 +1,5 @@
 <script lang="ts">
   import CardList from "components/CardList.svelte";
-  import { onMount } from "svelte";
-  import { selectedCards } from "../store";
 
   const foto = "images/cards/green.png";
   const bluecard = "/images/cards/blue.png";
@@ -11,6 +9,16 @@
 
   type gameStates = "SELECTING" | "INGAME" | "POST_GAME";
   let gameState: gameStates = "SELECTING";
+
+  async function makeRequest() {
+    const response = await fetch("http://localhost:8010/proxy/api/hit.php", {
+      method: "POST",
+      credentials: "include",
+      mode: "cors",
+      body: JSON.stringify({ aposta: cardsToPlay }),
+    });
+    console.log(response);
+  }
 
   function processCardStyle(flipped: boolean, isCardTaken: boolean) {
     const randomposition = () => (Math.random() - 0.5) * maxDistance * 2;
@@ -41,9 +49,8 @@
     doFlip = true;
   }
 
-  onMount(() => {
-    console.log($selectedCards);
-  });
+  let cardsToPlay: Array<string> = [];
+  $: console.log(cardsToPlay);
 </script>
 
 <style lang="scss">
@@ -79,10 +86,14 @@
     <header>
       <h1>Bafo!</h1>
       <p>Escolha no mínimo 3 figurinhas para o monte.</p>
+
       <hr />
     </header>
-    <CardList selectable/>
-    <button>Começar!</button>
+    <CardList selectable bind:selectedCards={cardsToPlay} />
+
+    <button
+      on:click={makeRequest}
+      disabled={cardsToPlay?.length < 3}>Começar!</button>
   {/if}
 
   {#if gameState === 'INGAME'}
@@ -100,9 +111,7 @@
     </div>
   {/if}
 
-  {#if gameState === "POST_GAME"}
-    <div class="postgame">
-      parabéns
-    </div>
+  {#if gameState === 'POST_GAME'}
+    <div class="postgame">parabéns</div>
   {/if}
 </section>
