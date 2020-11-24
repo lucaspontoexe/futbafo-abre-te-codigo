@@ -61,7 +61,7 @@
   </header>
   <hr />
 
-  <CardList/>
+  <CardList {cards}/>
 
   <button on:click={bafo}>Jogar</button>
 </section>

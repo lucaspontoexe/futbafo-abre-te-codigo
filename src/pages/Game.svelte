@@ -1,5 +1,6 @@
 <script lang="ts">
   import CardList from "components/CardList.svelte";
+  import type { NewCard } from "types/Card";
 
   const foto = "images/cards/green.png";
   const bluecard = "/images/cards/blue.png";
@@ -9,6 +10,9 @@
 
   type gameStates = "SELECTING" | "INGAME" | "POST_GAME";
   let gameState: gameStates = "SELECTING";
+
+  
+  let cardsToPlay = [];
 
   async function makeRequest() {
     const response = await fetch("http://localhost:8010/proxy/api/hit.php", {
@@ -49,8 +53,9 @@
     doFlip = true;
   }
 
-  let cardsToPlay: Array<string> = [];
-  $: console.log(cardsToPlay);
+  let loadedCards: Array<NewCard> = JSON.parse(sessionStorage.getItem('cards')) || [];
+  $: console.log('selected:', cardsToPlay)
+
 </script>
 
 <style lang="scss">
@@ -86,10 +91,12 @@
     <header>
       <h1>Bafo!</h1>
       <p>Escolha no mínimo 3 figurinhas para o monte.</p>
-
       <hr />
     </header>
-    <CardList selectable bind:selectedCards={cardsToPlay} />
+    <CardList
+      selectable
+      bind:cards={loadedCards}
+      bind:selectedCards={cardsToPlay} />
 
     <button
       on:click={makeRequest}

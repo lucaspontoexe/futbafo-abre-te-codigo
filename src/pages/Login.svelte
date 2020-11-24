@@ -28,11 +28,14 @@
 
     // if not sucess == true, give a warning
 
-    $nickname = loginData.nick;
-    $userCards = metadados.filter((item) => cardsData.cards.includes(item.nome));
+    nickname.set(loginData.nick);
+    userCards.set(
+      metadados.filter((item) => cardsData.cards.includes(item.nome))
+    );
+    // store é o caramba
+    sessionStorage.setItem('cards', JSON.stringify($userCards));
 
     console.log(loginData);
-    console.log($userCards);
 
     push("/profile");
   }
