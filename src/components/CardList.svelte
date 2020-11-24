@@ -1,14 +1,15 @@
 <script lang="ts">
   import { colorNames } from "utils/colorNames";
 
-  import { userCards } from "../store";
   import type { NewCard } from "../types/Card";
   interface SelectableCard extends NewCard {
     selected: boolean;
   }
 
-  console.log('user cards: ', $userCards);
-  let cards: Array<SelectableCard> = $userCards.map((i) => ({
+  export let cards: Array<NewCard> = [];
+
+  console.log('now the cards are: ', cards);
+  let selectableCards: Array<SelectableCard> = cards.map((i) => ({
     ...i,
     selected: false,
   }));
@@ -27,7 +28,7 @@
 
   $: {
     // por algum motivo isso parece rodar duas vezes, mas e agora
-    selectedCards = cards.filter((card) => card.selected).map((c) => c.nome);
+    selectedCards = selectableCards.filter((card) => card.selected).map((c) => c.nome);
     // console.log("[debug] chosen cards: ", selectedCards);
   }
 </script>
@@ -106,7 +107,7 @@
       <!-- TEM jeitos melhores de fazer isso? Com certeza. -->
       {#if selectable}
         <!-- filter: código pras fileiras (selecionáveis) -->
-        {#each cards.filter((c) => c.color === color) as card}
+        {#each selectableCards.filter((c) => c.color === color) as card}
           <!-- com ARIA e tudo o que tem direito -->
           <div
             class={card.selected ? 'card selected' : 'card'}
