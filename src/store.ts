@@ -1,5 +1,5 @@
-import { writable } from 'svelte/store';
+import { writable } from 'svelte-persistent-store/dist/session';
 
-export const selectedCards = writable([]);
-export const userCards = writable([]);
-export const nickname = writable('');
+// export const selectedCards = writable([]);
+export const userCards = writable('cards', []);
+export const nickname = writable('nick', '');

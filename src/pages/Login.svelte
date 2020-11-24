@@ -24,8 +24,8 @@
     userCards.set(metadados.filter((item) => cardsData.cards.includes(item.nome)));
     
     // store é o caramba
-    sessionStorage.setItem("cards", JSON.stringify($userCards));
-    sessionStorage.setItem("user", JSON.stringify(loginData));
+    // sessionStorage.setItem("cards", JSON.stringify($userCards));
+    // sessionStorage.setItem("user", JSON.stringify(loginData));
     console.log(loginData);
 
     push("/profile");

@@ -1,6 +1,7 @@
 <script lang="ts">
   import CardList from "components/CardList.svelte";
   import api from "services/api";
+  import { userCards } from "store";
   import type { NewCard } from "types/Card";
 
   const foto = "images/cards/green.png";
@@ -48,8 +49,9 @@
     doFlip = true;
   }
 
+  // FALLBACK
   let loadedCards: Array<NewCard> =
-    JSON.parse(sessionStorage.getItem("cards")) || [];
+    $userCards || JSON.parse(sessionStorage.getItem("cards"));
   $: console.log("selected:", cardsToPlay);
 </script>
 

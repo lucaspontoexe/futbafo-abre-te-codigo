@@ -53,7 +53,7 @@
   <header>
     <h1>Perfil</h1>
     <p>
-      {$nickname || JSON.parse(sessionStorage.getItem('user')).nick || 'Jogador'},
+      {$nickname || 'Jogador'},
     </p>
     <p>
       <strong>Você tem </strong>

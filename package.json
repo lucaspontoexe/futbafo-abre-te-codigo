@@ -30,6 +30,7 @@
     "sass": "^1.29.0",
     "shortid": "^2.2.16",
     "sirv-cli": "^1.0.0",
+    "svelte-persistent-store": "^0.1.4",
     "svelte-spa-router": "^3.0.5"
   }
 }
