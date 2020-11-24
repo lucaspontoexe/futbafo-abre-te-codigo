@@ -52,7 +52,9 @@
 <section id="profile">
   <header>
     <h1>Perfil</h1>
-    <p>{$nickname || 'Jogador'},</p>
+    <p>
+      {$nickname || JSON.parse(sessionStorage.getItem('user')).nick || 'Jogador'},
+    </p>
     <p>
       <strong>Você tem </strong>
       <span>{cards.length}</span>
@@ -61,7 +63,7 @@
   </header>
   <hr />
 
-  <CardList {cards}/>
+  <CardList {cards} />
 
   <button on:click={bafo}>Jogar</button>
 </section>

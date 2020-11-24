@@ -21,12 +21,11 @@
     // if not sucess == true, give a warning
 
     nickname.set(loginData.nick);
-    userCards.set(
-      metadados.filter((item) => cardsData.cards.includes(item.nome))
-    );
+    userCards.set(metadados.filter((item) => cardsData.cards.includes(item.nome)));
+    
     // store é o caramba
     sessionStorage.setItem("cards", JSON.stringify($userCards));
-
+    sessionStorage.setItem("user", JSON.stringify(loginData));
     console.log(loginData);
 
     push("/profile");
