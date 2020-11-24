@@ -3,6 +3,7 @@
   import { link, push } from "svelte-spa-router";
   import { nickname, userCards } from "../store";
   import metadados from "../metadados.json";
+  import api from "services/api";
 
   let data = {
     email: "",
@@ -12,19 +13,10 @@
 
   let form: HTMLFormElement;
   async function submit() {
-    const loginData = await fetch("http://localhost:8010/proxy/api/login.php", {
-      method: "POST",
-      credentials: "same-origin",
-      body: JSON.stringify(data),
-    }).then((r) => r.json());
-
-    const cardsData = await fetch(
-      "http://localhost:8010/proxy/api/get_cards.php",
-      {
-        credentials: "include",
-        mode: "cors",
-      }
-    ).then((r) => r.json());
+    const loginResponse = await api.post("/login.php", { ...data });
+    const cardsResponse = await api.get("/get_cards.php");
+    const loginData = loginResponse.data;
+    const cardsData = cardsResponse.data;
 
     // if not sucess == true, give a warning
 
@@ -33,7 +25,7 @@
       metadados.filter((item) => cardsData.cards.includes(item.nome))
     );
     // store é o caramba
-    sessionStorage.setItem('cards', JSON.stringify($userCards));
+    sessionStorage.setItem("cards", JSON.stringify($userCards));
 
     console.log(loginData);
 
