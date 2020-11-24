@@ -1,5 +1,6 @@
 <script lang="ts">
   import CardList from "components/CardList.svelte";
+  import api from "services/api";
   import type { NewCard } from "types/Card";
 
   const foto = "images/cards/green.png";
@@ -11,17 +12,11 @@
   type gameStates = "SELECTING" | "INGAME" | "POST_GAME";
   let gameState: gameStates = "SELECTING";
 
-  
   let cardsToPlay = [];
 
   async function makeRequest() {
-    const response = await fetch("http://localhost:8010/proxy/api/hit.php", {
-      method: "POST",
-      credentials: "include",
-      mode: "cors",
-      body: JSON.stringify({ aposta: cardsToPlay }),
-    });
-    console.log(response);
+    const response = await api.post("/hit.php", { aposta: cardsToPlay });
+    console.log(response.data);
   }
 
   function processCardStyle(flipped: boolean, isCardTaken: boolean) {
@@ -53,9 +48,9 @@
     doFlip = true;
   }
 
-  let loadedCards: Array<NewCard> = JSON.parse(sessionStorage.getItem('cards')) || [];
-  $: console.log('selected:', cardsToPlay)
-
+  let loadedCards: Array<NewCard> =
+    JSON.parse(sessionStorage.getItem("cards")) || [];
+  $: console.log("selected:", cardsToPlay);
 </script>
 
 <style lang="scss">
