@@ -1,12 +1,28 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import { selectedCards } from "../store";
+  import CardList from "components/CardList.svelte";
+  import type { NewCard } from "types/Card";
 
   const foto = "images/cards/green.png";
   const bluecard = "/images/cards/blue.png";
   const maxDistance = 90;
 
   let doFlip = false;
+
+  type gameStates = "SELECTING" | "INGAME" | "POST_GAME";
+  let gameState: gameStates = "SELECTING";
+
+  
+  let cardsToPlay = [];
+
+  async function makeRequest() {
+    const response = await fetch("http://localhost:8010/proxy/api/hit.php", {
+      method: "POST",
+      credentials: "include",
+      mode: "cors",
+      body: JSON.stringify({ aposta: cardsToPlay }),
+    });
+    console.log(response);
+  }
 
   function processCardStyle(flipped: boolean, isCardTaken: boolean) {
     const randomposition = () => (Math.random() - 0.5) * maxDistance * 2;
@@ -37,9 +53,9 @@
     doFlip = true;
   }
 
-  onMount(() => {
-    console.log($selectedCards);
-  });
+  let loadedCards: Array<NewCard> = JSON.parse(sessionStorage.getItem('cards')) || [];
+  $: console.log('selected:', cardsToPlay)
+
 </script>
 
 <style lang="scss">
@@ -47,7 +63,7 @@
     color: #60358f;
     position: relative;
     text-align: center;
-    
+
     font-family: Roboto;
     font-style: normal;
     font-weight: 300;
@@ -70,15 +86,39 @@
   }
 </style>
 
-<div class="game-wrapper">
-  <h1>Comece a jogar!</h1>
-  <p>Bata no monte e tente virar as figurinhas</p>
-  <div class="game">
-    <div class="card" style={processCardStyle(doFlip, true)} />
-    <div class="card" style={processCardStyle(doFlip, false)} />
-    <div class="card" style={processCardStyle(doFlip, false)} />
-    <div class="card" style={processCardStyle(doFlip, false)} />
-  </div>
+<section id="game">
+  {#if gameState === 'SELECTING'}
+    <header>
+      <h1>Bafo!</h1>
+      <p>Escolha no mínimo 3 figurinhas para o monte.</p>
+      <hr />
+    </header>
+    <CardList
+      selectable
+      bind:cards={loadedCards}
+      bind:selectedCards={cardsToPlay} />
 
-  <button on:click={flipCards}> Jogar </button>
-</div>
+    <button
+      on:click={makeRequest}
+      disabled={cardsToPlay?.length < 3}>Começar!</button>
+  {/if}
+
+  {#if gameState === 'INGAME'}
+    <div class="game-wrapper">
+      <h1>Comece a jogar!</h1>
+      <p>Bata no monte e tente virar as figurinhas</p>
+      <div class="game">
+        <div class="card" style={processCardStyle(doFlip, true)} />
+        <div class="card" style={processCardStyle(doFlip, false)} />
+        <div class="card" style={processCardStyle(doFlip, false)} />
+        <div class="card" style={processCardStyle(doFlip, false)} />
+      </div>
+
+      <button on:click={flipCards}> Jogar </button>
+    </div>
+  {/if}
+
+  {#if gameState === 'POST_GAME'}
+    <div class="postgame">parabéns</div>
+  {/if}
+</section>

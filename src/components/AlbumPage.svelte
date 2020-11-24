@@ -3,13 +3,8 @@
 
   export let title = "As Donas da Bola";
   export let color = "green";
-  const altImages = {
-    green: "Figurinhas Verdes",
-    blue: "Figurinhas Azuis",
-    yellow: "Figurinhas Amarelas",
-    red: "Figurinhas Vermelhas",
-  };
-
+  import {colorNames} from '../utils/colorNames';
+  
   const colorData = {
     // text / background
     green: ["#457351", "#d3f9dd"],
@@ -58,7 +53,7 @@
 
 <section class="album-page" style={`background-color: ${colorData[color][1]}`}>
   <header>
-    <img src={`images/cards/${color}.png`} alt={altImages[color]} />
+    <img src={`images/cards/${color}.png`} alt={colorNames[color]} />
     <h1 style={`color: ${colorData[color][0]}`}>{title}</h1>
   </header>
 
