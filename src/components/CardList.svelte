@@ -1,12 +1,12 @@
 <script lang="ts">
   import { colorNames } from "utils/colorNames";
 
-  import type { NewCard } from "../types/Card";
-  interface SelectableCard extends NewCard {
+  import type { Card } from "../types/Card";
+  interface SelectableCard extends Card {
     selected: boolean;
   }
 
-  export let cards: Array<NewCard> = [];
+  export let cards: Array<Card> = [];
 
   console.log('now the cards are: ', cards);
   let selectableCards: Array<SelectableCard> = cards.map((i) => ({

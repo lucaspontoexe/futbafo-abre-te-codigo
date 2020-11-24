@@ -2,7 +2,7 @@
   import CardList from "components/CardList.svelte";
   import api from "services/api";
   import { userCards } from "store";
-  import type { NewCard } from "types/Card";
+  import type { Card } from "types/Card";
 
   const foto = "images/cards/green.png";
   const bluecard = "/images/cards/blue.png";
@@ -17,7 +17,14 @@
 
   async function makeRequest() {
     const response = await api.post("/hit.php", { aposta: cardsToPlay });
+
     console.log(response.data);
+    //response.data.new_cards 
+    // esperar pelo bafo? melhor, né?
+
+    const {data: updatedCards} = await api.get("/get_cards.php");
+    $userCards = updatedCards;
+    gameState = "INGAME";
   }
 
   function processCardStyle(flipped: boolean, isCardTaken: boolean) {
@@ -50,7 +57,7 @@
   }
 
   // FALLBACK
-  let loadedCards: Array<NewCard> =
+  let loadedCards: Array<Card> =
     $userCards || JSON.parse(sessionStorage.getItem("cards"));
   $: console.log("selected:", cardsToPlay);
 </script>

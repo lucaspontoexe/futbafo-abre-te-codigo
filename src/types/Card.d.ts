@@ -1,4 +1,4 @@
-export interface Card {
+export interface firesVersionMetadata {
     tipo_arquivo: string;
     nome: string;
     titulo: string;
@@ -19,7 +19,7 @@ export interface Card {
     link: string;
 }
 
-export interface NewCard {
+export interface Card {
     nome: string;
     legenda: string;
     local: string;
