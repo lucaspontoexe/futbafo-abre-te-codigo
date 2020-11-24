@@ -3,8 +3,9 @@
 
   export let title = "As Donas da Bola";
   export let color = "green";
-  import {colorNames} from '../utils/colorNames';
-  
+  import { colorNames } from "../utils/colorNames";
+  import { userCards } from "../store";
+
   const colorData = {
     // text / background
     green: ["#457351", "#d3f9dd"],
@@ -12,6 +13,8 @@
     yellow: ["#FBBD02", "#FFFACE"],
     red: ["#A32C2A", "#F5DFDF"],
   };
+
+  const cards = $userCards.filter((c) => c.color === color);
 </script>
 
 <style lang="scss">
@@ -60,9 +63,8 @@
   <div class="cards-wrapper">
     <!-- for each card of color -->
 
-    <AlbumCard cardID="48" />
-    <AlbumCard cardID="49" />
-    <AlbumCard cardID="50" />
-    <AlbumCard cardID="51" />
+    {#each cards as card}
+      <AlbumCard cardID={card.nome} />
+    {/each}
   </div>
 </section>
