@@ -11,11 +11,12 @@
   function findLink(input: string) {
     const split = input.split("https://");
     if (split.length === 2)
-      return { isLink: true /* split pro link aparecer bonito numa tag <a> */ };
-    return { isLink: false };
+      return { hasLink: true, text: split[0], link: 'https://' + split[1] };
+      // sem uso por enquanto, mas fica pra não quebrar
+    return { hasLink: false, text: split[0] };
   }
 
-
+  const linkData = findLink(curiosidade.fonte);
 </script>
 
 <style lang="scss">
@@ -93,7 +94,12 @@
   </div>
 
   <!-- svelte-ignore a11y-invalid-attribute -->
-  <p class="source">{curiosidade.fonte} <a href="#">(link condicional)</a></p>
+  <p class="source">
+    {#if linkData.hasLink}
+      {linkData.text}
+      <a href={linkData.link}>{linkData.link}</a>
+    {:else}{curiosidade.fonte}{/if}
+  </p>
 
   <div class="logo-redes-sociais">
     <img src={socials} alt="Redes Sociais" />
