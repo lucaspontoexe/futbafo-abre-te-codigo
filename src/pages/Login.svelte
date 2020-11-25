@@ -15,8 +15,8 @@
   async function submit() {
     const loginResponse = await api.post("/login.php", { ...data });
     const cardsResponse = await api.get("/get_cards.php");
-    const loginData = loginResponse.data;
-    const cardsData = cardsResponse.data;
+    const loginData: LoginResponseData = loginResponse.data;
+    const cardsData: CardsResponseData = cardsResponse.data;
 
     // if not sucess == true, give a warning
 

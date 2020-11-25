@@ -3,11 +3,10 @@ interface LoginRequest {
   senha: string;
 }
 
-interface LoginResponse {
+interface LoginResponseData {
   success: boolean;
   status?: string; //logged_in only?
   nick: string;
-  email: string;
   bonus_card?: string;
 
   error?: "incorrect_login" | "missing_parameter";
@@ -19,7 +18,7 @@ interface RegistrationRequest {
   nick: string;
 }
 
-interface RegistrationResponse {
+interface RegistrationResponseData {
   success: boolean;
   error?:
     | "logado"
@@ -31,7 +30,7 @@ interface RegistrationResponse {
 
 type ServerCard = { numero: string; addrr_img: string };
 
-interface CardsResponse {
+interface CardsResponseData {
   success: boolean;
   error?: "sessão invalida";
   resultado_cards: ServerCard[];
@@ -42,7 +41,7 @@ interface HitRequest {
   aposta: string[];
 }
 
-interface HitResponse {
+interface HitResponseData {
   success: boolean;
   error?:
     | "sessão invalida"
