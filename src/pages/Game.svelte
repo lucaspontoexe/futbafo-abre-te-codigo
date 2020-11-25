@@ -3,6 +3,7 @@
   import api from "services/api";
   import { userCards } from "store";
   import type { Card } from "types/Card";
+  import metadados from "../metadados.json";
 
   const foto = "images/cards/green.png";
   const bluecard = "/images/cards/blue.png";
@@ -19,11 +20,15 @@
     const response = await api.post("/hit.php", { aposta: cardsToPlay });
 
     console.log(response.data);
-    //response.data.new_cards 
+    //response.data.new_cards
     // esperar pelo bafo? melhor, né?
 
-    const {data: updatedCards} = await api.get("/get_cards.php");
-    $userCards = updatedCards;
+    const { data: newCardsData } = await api.get("/get_cards.php");
+    userCards.set(
+      newCardsData.cards.map((cardName: string) =>
+        metadados.find((i) => i.nome === cardName)
+      )
+    );
     gameState = "INGAME";
   }
 
@@ -56,9 +61,13 @@
     doFlip = true;
   }
 
+  let loadedCards: Array<Card> = [];
+
   // FALLBACK
-  let loadedCards: Array<Card> =
-    $userCards || JSON.parse(sessionStorage.getItem("cards"));
+  if ($userCards.length === 0)
+    loadedCards = JSON.parse(sessionStorage.getItem("cards"));
+  else loadedCards = $userCards;
+
   $: console.log("selected:", cardsToPlay);
 </script>
 
