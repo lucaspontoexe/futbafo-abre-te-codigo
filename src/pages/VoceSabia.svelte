@@ -1,8 +1,21 @@
 <script lang="ts">
+  import vocesabia from "../vocesabia.json";
+
   //compatibilidade com o JSX
   const logo = "images/logos/logo_roxo.png";
   const socials = "images/icons/icon_socialmedia.png";
   const logoMuseu = "images/logos/museu_futebol_branco.png";
+
+  const curiosidade = vocesabia[Math.floor(Math.random() * vocesabia.length)];
+
+  function findLink(input: string) {
+    const split = input.split("https://");
+    if (split.length === 2)
+      return { isLink: true /* split pro link aparecer bonito numa tag <a> */ };
+    return { isLink: false };
+  }
+
+
 </script>
 
 <style lang="scss">
@@ -74,21 +87,13 @@
 <section class="voce-sabia">
   <img src={logo} class="logo-donas" alt="Logo Futebafo Donas da Bola" />
   <h1>Você Sabia?</h1>
-  <p>
-    Por 40 anos (!!!), entre 1940 e 1980, as mulheres foram proibidas de jogar
-    bola no Brasil!
-  </p>
+  <p>{curiosidade.texto}</p>
   <div class="hashtags">
     #futebolfeminino #donasdabola #futebafo #museudofutebol
   </div>
 
-  <p class="source">
-    Fonte: Folha de S.P., 2019. Disponível em:{' '}
-    <a
-      href="https://www1.folha.uol.com.br/esporte/2019/06/proibido-no-brasil-futebol-feminino-ja-foi-ate-atracao-de-circo.shtml">
-      www1.folha.uol.com.br/esporte/2019/06/proibido-no-brasil-futebol-feminino-ja-foi-ate-atracao-de-circo.shtml
-    </a>
-  </p>
+  <!-- svelte-ignore a11y-invalid-attribute -->
+  <p class="source">{curiosidade.fonte} <a href="#">(link condicional)</a></p>
 
   <div class="logo-redes-sociais">
     <img src={socials} alt="Redes Sociais" />
