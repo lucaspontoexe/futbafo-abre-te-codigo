@@ -13,22 +13,24 @@
 
   let form: HTMLFormElement;
   async function submit() {
-    const loginResponse = await api.post("/login.php", { ...data });
-    const cardsResponse = await api.get("/get_cards.php");
-    const loginData: LoginResponseData = loginResponse.data;
-    const cardsData: CardsResponseData = cardsResponse.data;
+    try {
+      const loginResponse = await api.post("/login.php", { ...data });
+      const cardsResponse = await api.get("/get_cards.php");
+      const loginData: LoginResponseData = loginResponse.data;
+      const cardsData: CardsResponseData = cardsResponse.data;
 
-    // if not sucess == true, give a warning
+      // if not sucess == true, give a warning
 
-    nickname.set(loginData.nick);
-    userCards.set(metadados.filter((item) => cardsData.cards.includes(item.nome)));
-    
-    // store é o caramba
-    // sessionStorage.setItem("cards", JSON.stringify($userCards));
-    // sessionStorage.setItem("user", JSON.stringify(loginData));
-    console.log(loginData);
+      nickname.set(loginData.nick);
+      userCards.set(
+        metadados.filter((item) => cardsData.cards.includes(item.nome))
+      );
+      console.log(loginData);
 
-    push("/profile");
+      push("/profile");
+    } catch (error) {
+      console.dir(error.response.data);
+    }
   }
 
   onMount(() => {
