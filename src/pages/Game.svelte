@@ -40,7 +40,8 @@
     } catch (error) {
       // A gente adora digitar
       console.dir(error.response.data);
-      gameError = error.response.data.error || JSON.stringify(error);
+      gameError =
+        error.response.data.error || error.message || JSON.stringify(error);
       setTimeout(() => (gameError = ""), 3000);
     }
   }

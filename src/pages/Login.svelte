@@ -32,7 +32,8 @@
       push("/profile");
     } catch (error) {
       console.dir(error.response.data as LoginResponseData | CardsResponseData);
-      loginError = error.response.data.error || JSON.stringify(error);
+      loginError =
+        error.response.data.error || error.message || JSON.stringify(error);
       setTimeout(() => (loginError = ""), 3000);
     }
   }
