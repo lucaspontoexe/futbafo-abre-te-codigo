@@ -4,12 +4,14 @@
   import { nickname, userCards } from "../store";
   import metadados from "../metadados.json";
   import api from "services/api";
+  import Notification from "components/Notification.svelte";
 
   let data = {
     email: "",
     senha: "",
   };
-  // `
+
+  let loginError = "";
 
   let form: HTMLFormElement;
   async function submit() {
@@ -29,7 +31,9 @@
 
       push("/profile");
     } catch (error) {
-      console.dir(error.response.data);
+      console.dir(error.response.data as LoginResponseData | CardsResponseData);
+      loginError = error.response.data.error || JSON.stringify(error);
+      setTimeout(() => (loginError = ""), 3000);
     }
   }
 
@@ -58,3 +62,5 @@
     bind:value={data.senha} />
   <button type="submit">bora</button>
 </form>
+
+<Notification data={{ type: 'error', message: loginError }} />
