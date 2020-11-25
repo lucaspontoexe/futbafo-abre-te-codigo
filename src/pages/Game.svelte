@@ -1,5 +1,6 @@
 <script lang="ts">
   import CardList from "components/CardList.svelte";
+  import Notification from "components/Notification.svelte";
   import api from "services/api";
   import { userCards } from "store";
   import type { Card } from "types/Card";
@@ -16,23 +17,32 @@
 
   let cardsToPlay: string[] = [];
 
+  let gameError = "";
+
   async function makeRequest() {
-    const response = await api.post("/hit.php", { aposta: cardsToPlay });
+    try {
+      const response = await api.post("/hit.php", { aposta: cardsToPlay });
 
-    console.log(response.data);
-    //response.data.new_cards
-    // esperar pelo bafo? melhor, né?
+      console.log(response.data);
+      //response.data.new_cards
+      // esperar pelo bafo? melhor, né?
 
-    // typescript parece meio estranho às vezes
-    const { data: newCardsData }: { data: CardsResponseData } = await api.get(
-      "/get_cards.php"
-    );
-    userCards.set(
-      newCardsData.cards.map((cardName: string) =>
-        metadados.find((i) => i.nome === cardName)
-      )
-    );
-    gameState = "INGAME";
+      // typescript parece meio estranho às vezes
+      const { data: newCardsData }: { data: CardsResponseData } = await api.get(
+        "/get_cards.php"
+      );
+      userCards.set(
+        newCardsData.cards.map((cardName: string) =>
+          metadados.find((i) => i.nome === cardName)
+        )
+      );
+      gameState = "INGAME";
+    } catch (error) {
+      // A gente adora digitar
+      console.dir(error.response.data);
+      gameError = error.response.data.error || JSON.stringify(error);
+      setTimeout(() => (gameError = ""), 3000);
+    }
   }
 
   function processCardStyle(flipped: boolean, isCardTaken: boolean) {
@@ -138,3 +148,5 @@
     <div class="postgame">parabéns</div>
   {/if}
 </section>
+
+<Notification data={{ type: 'error', message: gameError }} />
