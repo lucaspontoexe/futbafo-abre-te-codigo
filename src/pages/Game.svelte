@@ -14,7 +14,7 @@
   type gameStates = "SELECTING" | "INGAME" | "POST_GAME";
   let gameState: gameStates = "SELECTING";
 
-  let cardsToPlay = [];
+  let cardsToPlay: string[] = [];
 
   async function makeRequest() {
     const response = await api.post("/hit.php", { aposta: cardsToPlay });
@@ -23,7 +23,10 @@
     //response.data.new_cards
     // esperar pelo bafo? melhor, né?
 
-    const { data: newCardsData } = await api.get("/get_cards.php");
+    // typescript parece meio estranho às vezes
+    const { data: newCardsData }: { data: CardsResponseData } = await api.get(
+      "/get_cards.php"
+    );
     userCards.set(
       newCardsData.cards.map((cardName: string) =>
         metadados.find((i) => i.nome === cardName)

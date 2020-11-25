@@ -2,8 +2,9 @@
   import CardList from "../components/CardList.svelte";
   import { push } from "svelte-spa-router";
   import { nickname, userCards } from "../store";
+  import type { Card } from "types/Card";
 
-  const cards = $userCards;
+  const cards: Card[] = $userCards;
 
   function bafo() {
     push("/game");
@@ -52,9 +53,7 @@
 <section id="profile">
   <header>
     <h1>Perfil</h1>
-    <p>
-      {$nickname || 'Jogador'},
-    </p>
+    <p>{$nickname || 'Jogador'},</p>
     <p>
       <strong>Você tem </strong>
       <span>{cards.length}</span>
