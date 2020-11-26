@@ -56,4 +56,5 @@ interface HitResponseData {
     | "erro genérico (8)";
   resultado_aposta: ServerCard[];
   new_cards: string[];
+  non_flipped: string[];
 }
