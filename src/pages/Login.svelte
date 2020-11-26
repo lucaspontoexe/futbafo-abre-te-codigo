@@ -5,6 +5,7 @@
   import metadados from "../metadados.json";
   import api from "services/api";
   import Notification from "components/Notification.svelte";
+  import findCardByID from "utils/findCardByID";
 
   let data = {
     email: "",
@@ -24,9 +25,7 @@
       // if not sucess == true, give a warning
 
       nickname.set(loginData.nick);
-      userCards.set(
-        metadados.filter((item) => cardsData.cards.includes(item.nome))
-      );
+      userCards.set(cardsData.cards.map(findCardByID));
       console.log(loginData);
 
       push("/profile");
