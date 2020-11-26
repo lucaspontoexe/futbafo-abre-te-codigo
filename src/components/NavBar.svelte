@@ -1,9 +1,9 @@
 <script lang="ts">
   import { location, link } from "svelte-spa-router";
-  const profile = "/images/icons/icon_perfil.png";
-  const howtoplay = "/images/icons/icon_comojogar.png";
-  const game = "/images/icons/icon_bafo.png";
-  const album = "/images/icons/icon_album.png";
+  const profile = "images/icons/icon_perfil.png";
+  const howtoplay = "images/icons/icon_comojogar.png";
+  const game = "images/icons/icon_bafo.png";
+  const album = "images/icons/icon_album.png";
 
   const links = [
     { location: "/profile", name: "Perfil", image: profile },

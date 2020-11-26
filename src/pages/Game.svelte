@@ -8,7 +8,7 @@
   import findCardByID from "utils/findCardByID";
 
   const foto = "images/cards/green.png";
-  const bluecard = "/images/cards/blue.png";
+  const bluecard = "images/cards/blue.png";
   const maxDistance = 90;
 
   let doFlip = false;
@@ -105,7 +105,7 @@
     width: 130px;
     height: 120px;
     background-image: ${
-      isCardTaken ? `url(${background})` : `url(/images/cards/${color}.png)`
+      isCardTaken ? `url(${background})` : `url(images/cards/${color}.png)`
     };
     background-position: center;
     background-size: cover;

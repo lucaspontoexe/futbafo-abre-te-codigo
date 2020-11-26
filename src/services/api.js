@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default axios.create({
-    baseURL: 'http://localhost:8010/proxy/api',
+    baseURL: 'http://localhost:8000/api',
     withCredentials: true,
 })
 
