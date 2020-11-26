@@ -6,8 +6,6 @@
   import { tick } from "svelte";
   import type { Card } from "types/Card";
   import findCardByID from "utils/findCardByID";
-  import { pickCards } from "utils/pickCard";
-  import metadados from "../metadados.json";
 
   const foto = "images/cards/green.png";
   const bluecard = "/images/cards/blue.png";

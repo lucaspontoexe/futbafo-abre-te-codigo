@@ -3,12 +3,21 @@
   import { push } from "svelte-spa-router";
   import { nickname, userCards } from "../store";
   import type { Card } from "types/Card";
+  import { onMount, tick } from "svelte";
 
-  const cards: Card[] = $userCards;
+  let cards: Card[] = $userCards;
 
   function bafo() {
     push("/game");
   }
+
+  // só pra garantir:
+  onMount(async () => {
+    await tick();
+    cards = JSON.parse(sessionStorage.getItem('cards')) || $userCards;
+    console.log(cards, $userCards);
+  });
+
 </script>
 
 <style lang="scss">
