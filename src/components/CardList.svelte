@@ -60,7 +60,7 @@
   .card {
     box-sizing: border-box;
     padding: 4px;
-    height: 90px;
+    min-height: 90px;
     object-fit: cover;
     background-size: 160px;
     background-position: center;

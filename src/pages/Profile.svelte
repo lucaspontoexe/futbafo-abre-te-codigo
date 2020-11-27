@@ -5,8 +5,10 @@
   import type { Card } from "types/Card";
   import { onMount, tick } from "svelte";
   import api from "services/api";
+  import BonusCardPopup from "components/BonusCardPopup.svelte";
 
   let cards: Card[] = $userCards;
+  let bonusCardID = "62";
 
   function bafo() {
     push("/game");
@@ -16,6 +18,9 @@
   onMount(async () => {
     await tick();
     cards = JSON.parse(sessionStorage.getItem("cards")) || $userCards;
+    // bonusCardID = (JSON.parse(
+    //   sessionStorage.getItem("user")
+    // ) as LoginResponseData).bonus_card;
     console.log(cards, $userCards);
   });
 
@@ -83,6 +88,8 @@
   <hr />
 
   <div class="button-wrapper"><button on:click={bafo}>Jogar</button></div>
+
+  <BonusCardPopup cardID={bonusCardID} />
 
   <CardList {cards} />
 
