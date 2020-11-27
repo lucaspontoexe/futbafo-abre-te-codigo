@@ -9,13 +9,14 @@
     position: fixed;
     bottom: 0px;
     width: 100vw;
-    background-color: crimson;
+    background-color: rgba($color: crimson, $alpha: 0.8);
     color: white;
     min-height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    z-index: 3;
   }
 </style>
 
