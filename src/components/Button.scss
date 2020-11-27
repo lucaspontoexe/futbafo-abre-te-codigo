@@ -1,0 +1,13 @@
+button {
+    width: 100%;
+    min-height: 3em;
+    text-transform: uppercase;
+    // background-color: var(--button-color); // use var?
+    border: 0;
+    border-radius: 6px;
+    background-color: #A3C54B; // use var?
+    color: white;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}

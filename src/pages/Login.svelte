@@ -44,6 +44,7 @@
 
 <style lang="scss">
   @import "../utils/common.scss";
+  @import "../components/Button.scss";
 
   #login {
     color: $mainTextColor;
@@ -92,7 +93,7 @@
       background-color: #f3f2f2;
       color: gray;
       margin: 10px 0px;
-      width: 80%;
+      width: 90%;
     }
 
     a {
@@ -137,7 +138,7 @@
       <a href="#">Ainda não tem cadastro? Clique aqui e faça já o seu!</a>
     </div>
     <br />
-    <button type="submit">bora</button>
+    <button type="submit">Entrar</button>
   </form>
 </section>
 
