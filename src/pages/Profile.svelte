@@ -68,9 +68,6 @@
       width: calc(100% - 20px);
     }
   }
-  .button-wrapper {
-    padding: 15px 5%;
-  }
 </style>
 
 <section id="profile">
