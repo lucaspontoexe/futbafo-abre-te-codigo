@@ -1,13 +1,24 @@
 <script lang="ts">
   import AlbumCard from "./AlbumCard.svelte";
   import { fade } from "svelte/transition";
+  import { bonusCard } from "store";
+  import { onMount, tick } from "svelte";
 
-  export let cardID = "";
-  let shouldDisplay = true;
+  let cardID = "";
+  let shouldDisplay = false;
 
   const dismiss = (event: Event) => {
-    if ((event.target as HTMLElement).id === "dismiss") shouldDisplay = false;
+    if ((event.target as HTMLElement).id === "dismiss") {
+      shouldDisplay = false;
+      $bonusCard = "";
+    }
   };
+
+  onMount(async () => {
+    cardID = String($bonusCard);
+    await tick();
+    shouldDisplay = true;
+  });
 </script>
 
 <style lang="scss">

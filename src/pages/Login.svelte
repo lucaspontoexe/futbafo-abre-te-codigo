@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { link, push } from "svelte-spa-router";
-  import { nickname, userCards } from "../store";
+  import { bonusCard, nickname, userCards } from "../store";
   import api from "services/api";
   import Notification from "components/Notification.svelte";
   import findCardByID from "utils/findCardByID";
@@ -25,6 +25,7 @@
 
       nickname.set(loginData.nick);
       userCards.set(cardsData.cards.map(findCardByID));
+      bonusCard.set(loginData.bonus_card);
       console.log(loginData);
 
       push("/profile");
@@ -141,5 +142,8 @@
     <button type="submit">Entrar</button>
   </form>
 </section>
+
+<!-- warning aqui não -->
+<div class="button-wrapper" style="display: none;"></div>
 
 <Notification data={{ type: 'error', message: loginError }} />

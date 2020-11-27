@@ -1,11 +1,12 @@
 <script lang="ts">
   import findCardByID from "utils/findCardByID";
   import { fade } from "svelte/transition";
+  import type { Card } from "types/Card";
 
   export let cardID = "48";
   export let small = false;
   let showInfo = false;
-  const cardInfo = findCardByID(cardID);
+  const cardInfo: Card = findCardByID(cardID);
 </script>
 
 <style lang="scss">
