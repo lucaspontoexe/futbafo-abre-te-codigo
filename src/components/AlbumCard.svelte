@@ -1,29 +1,59 @@
 <script lang="ts">
+  import findCardByID from "utils/findCardByID";
+  import { fade } from "svelte/transition";
+
   export let cardID = "48";
-  import metadados from '../metadados.json';
+  let showInfo = false;
+  const cardInfo = findCardByID(cardID);
 </script>
 
 <style lang="scss">
   .card {
+    position: relative;
     display: block;
     // flex-direction: column;
-    width: calc(50% - 10px); // experimentar larguras diferentes;
-    max-width: 350px;
+    width: 100%; // experimentar larguras diferentes;
+    // max-width: 350px;
     height: auto;
 
     .img-holder {
-      background: gray;
+      background: rgba($color: black, $alpha: 0.3);
+      position: relative;
     }
 
     img {
       width: 100%;
     }
 
+    .info {
+      position: absolute;
+      box-sizing: border-box;
+      padding: 20px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+
+      word-break: break-all;
+      color: white;
+      background-color: rgba($color: black, $alpha: 0.4);
+
+      h2 {
+        font-family: MuseoModerno, sans-serif;
+        font-weight: bold;
+      }
+
+      a {
+        color: white;
+      }
+    }
+
     .description {
       display: flex;
+      align-items: center;
       flex-direction: row;
-      // height: 3em;
+      min-height: 3em;
       background: white;
+      padding: 10px;
     }
 
     p {
@@ -31,26 +61,46 @@
       font-family: Roboto;
       font-style: normal;
       font-weight: normal;
-      font-size: 0.7em;
-      // line-height: 0.7em;
-      padding: 5px;
+      font-size: 3.6vw;
+      line-height: 1.2em;
+      flex: 9;
+    }
+
+    button {
+      height: 100%;
       flex: 1;
+      border: 0;
+      background: rgba(0, 0, 0, 0);
     }
   }
 </style>
 
 <div class="card">
-  <div class="img-holder">
+  <div class="img-holder" on:click={() => (showInfo = !showInfo)}>
     <img class="picture" src={`tempimages/${cardID}.png`} alt="figurinha" />
+
+    {#if showInfo}
+      <div class="info" transition:fade={{ duration: 500 }}>
+        <h2>Saiba mais sobre essa figurinha!</h2>
+
+        <p>Local: {cardInfo.local}</p>
+        <p>Ano: {cardInfo.data}</p>
+        <p>Fotógrafo: {cardInfo.fotografo}</p>
+        <p>Fonte: {cardInfo.fonte}</p>
+        <p>Tipo de licença: {cardInfo.licenca_tipo}</p>
+        <p>Link: <a href={cardInfo.link}> {cardInfo.link} </a></p>
+      </div>
+    {/if}
   </div>
 
   <div class="description">
-    <p>
-      {metadados.find(c => c.nome === cardID).legenda}
-    </p>
+    <p>{cardInfo.legenda}</p>
     <!-- button? -->
     <button>
-      <img src="images/icons/icon_saiba_mais.png" alt="Saiba mais" />
+      <img
+        src="images/icons/icon_saiba_mais.png"
+        alt="Saiba mais"
+        on:click={() => (showInfo = !showInfo)} />
     </button>
   </div>
 </div>
