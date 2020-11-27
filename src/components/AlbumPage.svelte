@@ -64,7 +64,7 @@
     <!-- for each card of color -->
 
     {#each cards as card}
-      <AlbumCard cardID={card.nome} />
+      <AlbumCard cardID={card.nome} small/>
     {/each}
   </div>
 </section>

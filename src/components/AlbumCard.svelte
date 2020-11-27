@@ -3,6 +3,7 @@
   import { fade } from "svelte/transition";
 
   export let cardID = "48";
+  export let small = false;
   let showInfo = false;
   const cardInfo = findCardByID(cardID);
 </script>
@@ -12,7 +13,7 @@
     position: relative;
     display: block;
     // flex-direction: column;
-    width: 100%; // experimentar larguras diferentes;
+    width: var(--card-width); // experimentar larguras diferentes;
     // max-width: 350px;
     height: auto;
 
@@ -40,6 +41,11 @@
       h2 {
         font-family: MuseoModerno, sans-serif;
         font-weight: bold;
+        font-size: var(--info-text-size);
+      }
+
+      p {
+        font-size: var(--info-text-size);
       }
 
       a {
@@ -61,7 +67,7 @@
       font-family: Roboto;
       font-style: normal;
       font-weight: normal;
-      font-size: 3.6vw;
+      font-size: var(--text-size);
       line-height: 1.2em;
       flex: 9;
     }
@@ -75,7 +81,13 @@
   }
 </style>
 
-<div class="card">
+<div
+  class="card"
+  style="
+  --card-width: {small ? 'calc(50% - 10px)' : '100%'}; 
+  --text-size: {small ? '3vw' : '3.6vw'};
+  --info-text-size: {small ? '2vw' : '3.6vw'};
+  ">
   <div class="img-holder" on:click={() => (showInfo = !showInfo)}>
     <img class="picture" src={`tempimages/${cardID}.png`} alt="figurinha" />
 
