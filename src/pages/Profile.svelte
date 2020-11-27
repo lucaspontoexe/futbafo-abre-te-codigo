@@ -23,6 +23,7 @@
   async function logOut() {
     try {
       await api.post("/logout.php");
+      sessionStorage.clear();
       replace("/");
     } catch (error) {
       console.log(error);
