@@ -29,7 +29,7 @@
     .info {
       position: absolute;
       box-sizing: border-box;
-      padding: 20px;
+      padding: 10%;
       top: 0px;
       width: 100%;
       height: 100%;
@@ -42,6 +42,7 @@
         font-family: MuseoModerno, sans-serif;
         font-weight: bold;
         font-size: var(--info-text-size);
+        word-break: normal;
       }
 
       p {
