@@ -6,6 +6,9 @@
   import { tick } from "svelte";
   import type { Card } from "types/Card";
   import findCardByID from "utils/findCardByID";
+  import { fade } from "svelte/transition";
+  import AlbumCard from "components/AlbumCard.svelte";
+  import { push } from "svelte-spa-router";
 
   const foto = "images/cards/green.png";
   const bluecard = "/images/cards/blue.png";
@@ -23,6 +26,7 @@
   let cardsToPlay: string[] = [];
   let opponentCards: string[] = [];
   let deck: FlippableCard[] = [];
+  let newCards: string[];
 
   let gameError = "";
 
@@ -57,6 +61,8 @@
         ...non_flipped.map(findCardByID).map((i) => makeFlippable(i, false)),
         ...new_cards.map(findCardByID).map((i) => makeFlippable(i, true)),
       ];
+
+      newCards = new_cards;
 
       // typescript parece meio estranho às vezes
       const { data: newCardsData }: { data: CardsResponseData } = await api.get(
@@ -137,7 +143,10 @@
 </script>
 
 <style lang="scss">
-  .game-wrapper {
+  @import "../utils/common.scss";
+  @import "../components/Button.scss";
+
+  #game {
     color: #60358f;
     position: relative;
     text-align: center;
@@ -162,6 +171,22 @@
     width: 100%;
     height: 50vh;
   }
+
+  .postgame {
+    background-color: #60358f;
+    box-sizing: border-box;
+
+    img.logo {
+      width: 40%;
+    }
+
+    .cards {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
 </style>
 
 <section id="game">
@@ -171,14 +196,17 @@
       <p>Escolha no mínimo 3 figurinhas para o monte.</p>
       <hr />
     </header>
+
     <CardList
       selectable
       bind:cards={loadedCards}
       bind:selectedCards={cardsToPlay} />
 
-    <button
-      on:click={getOpponentCards}
-      disabled={cardsToPlay?.length < 3}>Começar!</button>
+    <div class="button-wrapper">
+      <button
+        on:click={getOpponentCards}
+        disabled={cardsToPlay?.length < 3}>Começar!</button>
+    </div>
   {/if}
 
   {#if gameState === 'INGAME'}
@@ -192,13 +220,29 @@
             style={processCardStyle(doFlip, card.flipped, card.color, `tempimages/thumbs/${card.nome}.jpg`)} />
         {/each}
       </div>
-
-      <button on:click={flipCards}> Jogar </button>
+      <div class="button-wrapper">
+        <button on:click={flipCards}> Jogar </button>
+      </div>
     </div>
   {/if}
 
   {#if gameState === 'POST_GAME'}
-    <div class="postgame">parabéns</div>
+    <div class="postgame" transition:fade>
+      <img
+        class="logo"
+        src="images/logos/logo_roxo.png"
+        alt="Logo Futebafo Donas da Bola" />
+
+      <div class="cards">
+        {#each newCards as card}
+          <AlbumCard cardID={card} />
+        {/each}
+      </div>
+
+      <div class="button-wrapper">
+        <button on:click={() => push('/album')}> Ir para o álbum </button>
+      </div>
+    </div>
   {/if}
 </section>
 

@@ -52,6 +52,8 @@
 
     img {
       width: 100%;
+      font-size: 6px;
+      line-height: 1.3em;
     }
   }
 
