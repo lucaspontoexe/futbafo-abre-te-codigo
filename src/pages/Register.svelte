@@ -8,17 +8,18 @@
 
   let data = {
     email: "",
+    nick: "",
     senha: "",
   };
 
-  let loginError = "";
+  let registrationError = "";
 
   let form: HTMLFormElement;
   async function submit() {
     try {
-      const loginResponse = await api.post("/login.php", { ...data });
+      const loginResponse = await api.post("/cadastro.php", { ...data });
       const cardsResponse = await api.get("/get_cards.php");
-      const loginData: LoginResponseData = loginResponse.data;
+      const loginData: RegistrationResponseData = loginResponse.data;
       const cardsData: CardsResponseData = cardsResponse.data;
 
       // if not sucess == true, give a warning
@@ -29,10 +30,12 @@
 
       push("/profile");
     } catch (error) {
-      console.dir(error.response.data as LoginResponseData | CardsResponseData);
-      loginError =
+      console.dir(
+        error.response.data as RegistrationResponseData | CardsResponseData
+      );
+      registrationError =
         error.response.data.error || error.message || JSON.stringify(error);
-      setTimeout(() => (loginError = ""), 3000);
+      setTimeout(() => (registrationError = ""), 3000);
     }
   }
 
@@ -55,12 +58,12 @@
 
     .logo-container {
       text-align: center;
-      width: 50%;
+      width: 30%;
       img.bafo {
         width: 100%;
       }
       img.museu {
-        width: 50%;
+        width: 80%;
       }
     }
 
@@ -124,6 +127,12 @@
     on:submit|preventDefault={submit}>
     <div class="inputs">
       <input
+        type="text"
+        name="nick"
+        placeholder="Insira seu nome de usuário"
+        bind:value={data.nick} />
+
+      <input
         type="email"
         name="email"
         placeholder="Digite seu e-mail"
@@ -134,12 +143,11 @@
         name="senha"
         placeholder="Digite sua senha"
         bind:value={data.senha} />
-      <a href="/register" use:link>Ainda não tem cadastro? Clique aqui e faça já
-        o seu!</a>
+      <a href="/" use:link>Já tem cadastro? Clique aqui para entrar!</a>
     </div>
     <br />
-    <button type="submit">Entrar</button>
+    <button type="submit">Criar Perfil</button>
   </form>
 </section>
 
-<Notification data={{ type: 'error', message: loginError }} />
+<Notification data={{ type: 'error', message: registrationError }} />
