@@ -1,9 +1,11 @@
 <script lang="ts">
   import CardList from "../components/CardList.svelte";
-  import { push } from "svelte-spa-router";
+  import { push, replace } from "svelte-spa-router";
   import { nickname, userCards } from "../store";
   import type { Card } from "types/Card";
   import { onMount, tick } from "svelte";
+  import api from "services/api";
+  import BonusCardPopup from "components/BonusCardPopup.svelte";
 
   let cards: Card[] = $userCards;
 
@@ -14,13 +16,24 @@
   // só pra garantir:
   onMount(async () => {
     await tick();
-    cards = JSON.parse(sessionStorage.getItem('cards')) || $userCards;
+    cards = JSON.parse(sessionStorage.getItem("cards")) || $userCards;
     console.log(cards, $userCards);
   });
 
+  async function logOut() {
+    try {
+      await api.post("/logout.php");
+      sessionStorage.clear();
+      replace("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }
 </script>
 
 <style lang="scss">
+  @import "../components/Button.scss";
+
   section#profile {
     //class praquele header?
     text-align: center;
@@ -71,7 +84,15 @@
   </header>
   <hr />
 
+  <div class="button-wrapper"><button on:click={bafo}>Jogar</button></div>
+
+  <BonusCardPopup />
+
   <CardList {cards} />
 
-  <button on:click={bafo}>Jogar</button>
+  <div class="button-wrapper">
+    <button
+      on:click={logOut}
+      style="background-color: #ECF4D4; color: #A3C54B;">Logout</button>
+  </div>
 </section>

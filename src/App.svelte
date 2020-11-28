@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Register from "pages/Register.svelte";
+
   import Router from "svelte-spa-router";
   import NavBar from "./components/NavBar.svelte";
   import Album from "./pages/Album.svelte";
@@ -10,6 +12,7 @@
 
   const routes = {
     "/": Login,
+    "/register": Register,
     "/profile": Profile,
     "/vocesabia": VoceSabia,
     "/tutorial": Tutorial,

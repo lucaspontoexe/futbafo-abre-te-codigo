@@ -20,7 +20,6 @@
 
 <style lang="scss">
   nav.main-nav {
-
     font-family: Roboto, Arial, Helvetica, sans-serif;
 
     a {
@@ -68,7 +67,7 @@
   }
 </style>
 
-{#if $location !== '/'}
+{#if !['/', '/register'].includes($location)}
   <nav class="main-nav">
     <ul>
       {#each links as url}

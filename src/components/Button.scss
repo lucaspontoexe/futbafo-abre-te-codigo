@@ -1,0 +1,22 @@
+button {
+  width: 100%;
+  min-height: 3em;
+  text-transform: uppercase;
+  // background-color: var(--button-color); // use var?
+  border: 0;
+  border-radius: 6px;
+  background-color: #a3c54b; // use var?
+  color: white;
+
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  transition: background-color 0.5s;
+}
+
+button:disabled {
+    background-color: rgb(175, 175, 175) !important;
+}
+
+.button-wrapper {
+  padding: 15px 20px;
+}

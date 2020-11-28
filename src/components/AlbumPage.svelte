@@ -5,6 +5,7 @@
   export let color = "green";
   import { colorNames } from "../utils/colorNames";
   import { userCards } from "../store";
+  import type { Card } from "types/Card";
 
   const colorData = {
     // text / background
@@ -14,7 +15,8 @@
     red: ["#A32C2A", "#F5DFDF"],
   };
 
-  const cards = $userCards.filter((c) => c.color === color);
+  const usercards = JSON.parse(sessionStorage.getItem("cards")) || $userCards;
+  const cards: Card[] = usercards.filter((c: Card) => c.color === color);
 </script>
 
 <style lang="scss">
@@ -64,7 +66,7 @@
     <!-- for each card of color -->
 
     {#each cards as card}
-      <AlbumCard cardID={card.nome} />
+      <AlbumCard cardID={card.nome} small />
     {/each}
   </div>
 </section>

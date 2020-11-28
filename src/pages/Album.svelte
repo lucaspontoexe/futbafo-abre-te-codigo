@@ -24,4 +24,5 @@ import AlbumPage from "../components/AlbumPage.svelte";
   <VoceSabia/>
   <AlbumPage title="Elas e seus Clubes" color="red"/>
   <AlbumPage title="Objetos e Memórias" color="blue"/>
+  <VoceSabia/>
 </section>
