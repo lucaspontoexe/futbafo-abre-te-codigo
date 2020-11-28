@@ -135,15 +135,13 @@
         name="senha"
         placeholder="Digite sua senha"
         bind:value={data.senha} />
+      <br />
       <a href="/register" use:link>Ainda não tem cadastro? Clique aqui e faça já
         o seu!</a>
     </div>
     <br />
-    <button type="submit">Entrar</button>
+    <div class="button-wrapper"><button type="submit">Entrar</button></div>
   </form>
 </section>
-
-<!-- warning aqui não -->
-<div class="button-wrapper" style="display: none;"></div>
 
 <Notification data={{ type: 'error', message: loginError }} />

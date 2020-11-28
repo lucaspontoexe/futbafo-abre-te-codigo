@@ -15,7 +15,7 @@
   };
 
   onMount(async () => {
-    cardID = String($bonusCard);
+    cardID = String($bonusCard || '');
     await tick();
     shouldDisplay = true;
   });

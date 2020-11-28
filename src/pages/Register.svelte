@@ -143,10 +143,13 @@
         name="senha"
         placeholder="Digite sua senha"
         bind:value={data.senha} />
+      <br />
       <a href="/" use:link>Já tem cadastro? Clique aqui para entrar!</a>
     </div>
     <br />
-    <button type="submit">Criar Perfil</button>
+    <div class="button-wrapper">
+      <button type="submit">Criar Perfil</button>
+    </div>
   </form>
 </section>
 

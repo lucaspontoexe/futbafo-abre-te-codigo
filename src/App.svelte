@@ -1,5 +1,5 @@
 <script lang="ts">
-import Register from "pages/Register.svelte";
+  import Register from "pages/Register.svelte";
 
   import Router from "svelte-spa-router";
   import NavBar from "./components/NavBar.svelte";
