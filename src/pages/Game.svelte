@@ -11,7 +11,6 @@
   import { push } from "svelte-spa-router";
 
   const foto = "images/cards/green.png";
-  const bluecard = "/images/cards/blue.png";
   const maxDistance = 90;
 
   let doFlip = false;
@@ -51,6 +50,11 @@
 
   async function makeRequest() {
     try {
+      hand.animate(handAnimationIn, {
+        duration: 200,
+        fill: "forwards",
+        easing: "ease-out",
+      });
       const response = await api.post("/hit.php", { aposta: cardsToPlay });
 
       console.log(response.data);
@@ -63,6 +67,13 @@
       ];
 
       newCards = new_cards;
+
+      hand.animate(handAnimationIn, {
+        duration: 500,
+        direction: "reverse",
+        fill: "forwards",
+        easing: "ease-out",
+      });
 
       // typescript parece meio estranho às vezes
       const { data: newCardsData }: { data: CardsResponseData } = await api.get(
@@ -132,6 +143,17 @@
     doFlip = true;
   }
 
+  let hand: HTMLElement;
+
+  const handAnimationIn: Keyframe[] = [
+    {
+      transform: "translateX(-50%) translateY(10%) scale(1.5)",
+    },
+    {
+      transform: "translateX(-40%) translateY(-10%) scale(1.2)",
+    },
+  ];
+
   let loadedCards: Array<Card> = [];
 
   // FALLBACK
@@ -169,7 +191,21 @@
 
   .game {
     width: 100%;
+    height: 60vh;
+  }
+
+  .hand {
     height: 50vh;
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translateX(-50%) translateY(10%) scale(1.5);
+    z-index: 5;
+    img {
+      height: 100%;
+    }
   }
 
   .postgame {
@@ -210,7 +246,7 @@
   {/if}
 
   {#if gameState === 'INGAME'}
-    <div class="game-wrapper">
+    <div class="game-wrapper" on:click={flipCards}>
       <h1>Comece a jogar!</h1>
       <p>Bata no monte e tente virar as figurinhas</p>
       <div class="game">
@@ -220,9 +256,14 @@
             style={processCardStyle(doFlip, card.flipped, card.color, `tempimages/thumbs/${card.nome}.jpg`)} />
         {/each}
       </div>
-      <div class="button-wrapper">
-        <button on:click={flipCards}> Jogar </button>
+
+      <div class="hand" bind:this={hand}>
+        <img src="images/mao.png" alt="mão" />
       </div>
+
+      <!-- <div class="button-wrapper">
+        <button on:click={flipCards}> Jogar </button>
+      </div> -->
     </div>
   {/if}
 
