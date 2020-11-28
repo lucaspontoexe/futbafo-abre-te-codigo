@@ -91,7 +91,8 @@
   --info-text-size: {small ? '2vw' : '3.6vw'};
   ">
   <div class="img-holder" on:click={() => (showInfo = !showInfo)}>
-    <img class="picture" src={`tempimages/${cardID}.png`} alt="figurinha" />
+    <img class="picture" src={`cards_images
+/${cardID}.png`} alt="figurinha" />
 
     {#if showInfo}
       <div class="info" transition:fade={{ duration: 500 }}>

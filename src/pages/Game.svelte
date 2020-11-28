@@ -253,7 +253,8 @@
         {#each deck as card}
           <div
             class="card"
-            style={processCardStyle(doFlip, card.flipped, card.color, `tempimages/thumbs/${card.nome}.jpg`)} />
+            style={processCardStyle(doFlip, card.flipped, card.color, `cards_images
+/thumbs/${card.nome}.jpg`)} />
         {/each}
       </div>
 

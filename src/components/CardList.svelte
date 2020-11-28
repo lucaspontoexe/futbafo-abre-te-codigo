@@ -122,14 +122,16 @@
               <div class="check" />
             {/if}
 
-            <img src="tempimages/thumbs/{card.nome}.jpg" alt={card.legenda} />
+            <img src="cards_images
+/thumbs/{card.nome}.jpg" alt={card.legenda} />
           </div>
         {/each}
       {:else}
         <!-- caso a seleção esteja desligada, só mostrar as figurinhas -->
         {#each cards.filter((c) => c.color === color) as card}
           <div class="card">
-            <img src="tempimages/thumbs/{card.nome}.jpg" alt={card.legenda} />
+            <img src="cards_images
+/thumbs/{card.nome}.jpg" alt={card.legenda} />
           </div>
         {/each}
       {/if}
