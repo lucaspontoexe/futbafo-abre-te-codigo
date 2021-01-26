@@ -85,7 +85,7 @@
   }
 
   .card .check {
-    background-image: url("/images/icons/sinal_check.png");
+    background-image: url("../images/icons/sinal_check.png");
     background-size: contain;
     background-position: right bottom;
 
