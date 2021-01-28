@@ -88,7 +88,7 @@
   style="
   --card-width: {small ? 'calc(50% - 10px)' : '100%'}; 
   --text-size: min(1.4em,3.6vw);
-  --info-text-size: min(0.8em,3.6vw);
+  --info-text-size: min({small? '0.8em' : '1.4em'},3.6vw);
   ">
   <div class="img-holder" on:click={() => (showInfo = !showInfo)}>
     <img class="picture" src={`cards_images
