@@ -20,8 +20,9 @@
 </script>
 
 <style lang="scss">
+
   section.album-page {
-    min-width: 100vw;
+    min-width: 100%;
     min-height: calc(100vh - 50px); // workaround? height - header
     scroll-snap-align: start;
     padding-bottom: 20px;

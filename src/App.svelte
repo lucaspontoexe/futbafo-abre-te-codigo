@@ -21,6 +21,16 @@
   };
 </script>
 
+<style>
+  #app {
+    max-width: 720px;
+    margin: 0px auto;
+  }
+  @media screen and (max-width: 720px) {
+    #app {max-width: 100vw;}
+  }
+</style>
+
 <div id="app">
   <NavBar />
   <Router {routes} />

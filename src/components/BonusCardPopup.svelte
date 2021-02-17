@@ -28,7 +28,7 @@
     position: fixed;
     top: 0px;
     left: 0px;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background: rgba($color: black, $alpha: 0.4);
     display: flex;
@@ -39,11 +39,11 @@
   }
 
   #bonus-card {
-    width: 80%;
+    width: min(80%,400px);
     border: 1px solid lighten($color: green, $amount: 10);
     border-radius: 10px;
     background-color: white;
-    padding: 5%;
+    padding: min(25px, 5%);
   }
 
   h1 {
